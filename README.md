@@ -8,6 +8,12 @@ nSGS explores how task sampling can adapt to the learning state of a robot polic
 
 Our experiments use a Go2 quadruped equipped with a Piper manipulator, trained with PPO for whole-body locomotion and manipulation in simulation.
 
+## Goal reaching on a million-task pool
+
+On a fixed pool of 1,048,576 three-dimensional goal configurations, a neural success estimator reached **98.51% walking success** and **98.50% equal-weight coverage across 42 cells** on seed 43. A per-configuration table scored 0% on both metrics. Both runs used the same sharp sampling kernel, 8,000 PPO updates and 2,016 fixed evaluation tasks. Endpoint values average the last three deterministic EMA evaluations.
+
+A spatial table with 16 bins per dimension also learned the task. On seed 43 it reached the walking threshold at update 2,400, ahead of the neural estimator at 5,600 (three consecutive evaluations at or above 50%). This comparison motivates testing which forms of sharing work across goals and seeds. The seed 43 scientific audit passed. Host swap activity exceeded the original resource threshold, so we omit wall-clock comparisons here.
+
 ## Results
 
 The corrected CleanMeta8 Teacher achieves **33.50% strict joint success**, compared with **31.88% for Uniform sampling** and **33.30% for a Fresh Teacher**, averaged across four Student seeds after 10,000 PPO updates.
