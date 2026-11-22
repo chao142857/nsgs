@@ -1,0 +1,93 @@
+{
+  "edition": "SGS independent locomotion replication from a clean policy",
+  "robot": "ANYmal-D",
+  "envs": 32768,
+  "updates": 5000,
+  "seeds": [
+    73201,
+    73202,
+    73203,
+    73204
+  ],
+  "steps_per_update": 24,
+  "controls_per_seed": 3932160000,
+  "paper": "https://arxiv.org/html/2610.12465",
+  "author_demos": "https://sgs-rl.github.io/",
+  "sampler": {
+    "target": 0.66,
+    "kappa": 5,
+    "history": 100,
+    "epsilon": 0.0001,
+    "temperature": 2,
+    "empty_rate": 0.5
+  },
+  "terrain": {
+    "families": [
+      "gap",
+      "pit",
+      "radial_beam",
+      "stairs",
+      "parallel_box",
+      "balance_beam",
+      "stepping_stones",
+      "jump_box",
+      "maze",
+      "contour",
+      "islands",
+      "climb_box",
+      "inverted_slope"
+    ],
+    "layouts": 260,
+    "distinct_raster_hashes": 260,
+    "configs": 104000,
+    "crossing": 52000,
+    "same_side": 52000,
+    "uncollapsed_train_holdout": true,
+    "geometry_sha": [
+      "d6d21d6bb94dcdb6ef2c968abd3ffed54751ca2b039ee61d53dec64547ea568f",
+      "6447f24738a21925a0bc92ee7dbab4ad6ebe18a781dbc34c2a2bb023f53e7148"
+    ]
+  },
+  "actors_from_scratch": true,
+  "maximum_host_threads_per_worker": 4,
+  "local_choices": [
+    "procedural terrain meshes and sampled start/goal patches; exact author generator not public",
+    "20 starts and 20 goals per tile, half crossing; 20 hold ticks with upright, low speed and two-foot support",
+    "same family/level/terrain seeds, independent continuous held-out start and goal coordinates, 2080 tasks",
+    "public ANYmal-D asset and public IsaacLab learned actuator originally identified on ANYmal-C",
+    "PPO hyperparameters and physics step inherited from tested Isaac/RSL-RL stack; forward coefficient removed at update 500"
+  ],
+  "quality_outputs": [
+    "preselected cross-terrain body poses for each of 13 families",
+    "all-panel strict stable arrivals",
+    "cross-only success, falls and timeouts"
+  ],
+  "literature_reference": "32K SGS final 0.494 +/- 0.113, three seeds; evaluation and unknown thresholds prevent equating success numbers.",
+  "code_sha256": {
+    "course.py": "4896f06b5f1391ff815715f6315927f405572f48495c4d848598b09cf6ab8de0",
+    "diagnostics.py": "7fc79b89d5753145f033c9acd19562cc0369c6fb8d73f2223468fddc45fe52be",
+    "prepare.py": "fec13e9dbf29ac88f4a0efd0a88c84162bef52018dd12a15f66fefb6d42f119e",
+    "sampler.py": "bb9df75950c16bb84df387444185fb61c99839c2a679a326441b63e8bcd671fe",
+    "terrain_compat.py": "cdeacfd995d249ae9923a33add673d7e13f999ed291a3dce15fc33a64e358139",
+    "train.py": "7a99072f7c2c14ccda4178ab447194a5dfe5cf3b23ea02fa2a0e228fb156ab23",
+    "worker.py": "0f702c52bf9d6daefe0d34e9fe81040ce4e77227d9227adce0bd2fbec318b2a7",
+    "ppo_smoke.py": "3a5f5406f9414188191c2085ce650dbf99f76c520aaa13545cff2e675d5db7b7",
+    "pool.py": "28441b9bf9fd514032ebe619d53be8d527e3dffbcc9c3a11e37b715508055efd",
+    "navigation.py": "3f7f277ae4fcb0ba59e014f47b778da3e24cb1029c7bd0364efbdff96d700176",
+    "catalog.py": "0f948b19af2a32a3e7cbda836345e9b5ebb1eef6ce13e5387aa5454fd09c2cea",
+    "terrain.py": "5b39990ccbfb48010897b55ba144c9c8ee0a9415e8d239a6876b1b9dfd40975e",
+    "table.py": "e3543acd50bcc578e2917692ec94a47b31d478c2cc7ad54b4fbb42af8a63b8ba",
+    "scene.py": "6109fc0f0e189300603318f3821a0ecda2de3e736f2c8dae9709aaf800efcb56",
+    "native.py": "13d40f598be2acc2d8d71b7fcc8f0e6b5d83502b4d83ed89269a4d8d88b242b0"
+  },
+  "expected_u0_labels": 0,
+  "probe_revision": "interior points at x=+-0.075 and y=0.075, no changes to pool or PPO",
+  "evaluation_recovery": {
+    "revision": 1,
+    "at": 250,
+    "evaluation_ctx": "torch.no_grad",
+    "resume_at": "recorded evaluation/reset boundary",
+    "old_sources": "code-pre-evaluation-recovery-250",
+    "first_failure": "inference tensor retained by Isaac mutable caches"
+  }
+}

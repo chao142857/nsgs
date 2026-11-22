@@ -1,0 +1,11 @@
+--- a/formal-v2-neural-32768/spatial_train.py
++++ b/formal-v2-neural-32768/spatial_train.py
+@@ -154,7 +154,7 @@
+     if simulator=='cpu':
+         import warp as wp
+         wp.config.kernel_cache_dir=str(out/'warp_cache')
+-    cfg = build_cfg(training_file,out,spec['num_envs'],seed=spec['seed'],reward='R0',
++    cfg = build_cfg(training_file,out,spec['num_envs'],seed=spec['seed'],reward='R1',
+                     sampler='external' if arm=='nsgs_e4_sharp' else 'uniform',device=simulator,timeout_penalty=-50.)
+     configure(cfg,scene_queries=spec.get('scene_queries',True))
+     from fixed5d_bench_runtime import configure_bench

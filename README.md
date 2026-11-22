@@ -6,6 +6,11 @@ English · [简体中文](README.zh-CN.md)
 
 A Go2 quadruped with a Piper arm learns to reach a target with its end effector using PPO. Each naturally completed training episode supplies a success or failure label. The sampler estimates the current policy’s probability of success for each goal and uses those estimates to select subsequent goals. We compare three estimators under a common sampling kernel: a table indexed by goal, a table pooling observations within spatial cells, and a neural predictor trained across goals.
 
+## Experiment source code
+
+- [SGS navigation on 13 procedural terrains with ANYmal-D](experiments/sgs_anymal_d/)
+- [Go2 and Piper end-effector goal reaching, original 3D and fixed 5D](experiments/go2_piper_goalreach/)
+
 ## Goal reaching on a million-task pool
 
 On a fixed pool of 1,048,576 three-dimensional goal configurations, a neural success estimator reached **98.51% walking success** and **98.50% equal-weight coverage across 42 cells** on seed 43. A per-configuration table scored 0% on both metrics. Both runs used the same sharp sampling kernel, 8,000 PPO updates and 2,016 fixed evaluation tasks. Endpoint values average the last three deterministic EMA evaluations.

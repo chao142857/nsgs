@@ -1,0 +1,167 @@
+{
+  "version": "episode-fixed-reach-5d-mu040-100-slope21-r1",
+  "authorized_to_dispatch_formal": false,
+  "original_targets": "保留原世界坐标和原目标配额，唯一起点变换为原出生状态随平面绕 Y 轴旋转",
+  "mu_uniform_proposal": [
+    0.4,
+    1.0
+  ],
+  "alpha_deg_uniform_proposal": [
+    -21.0,
+    21.0
+  ],
+  "positive_alpha": "沿世界 +x 上升",
+  "valid_target_vertical_clearance_m": 1e-06,
+  "proposal_rejection": "只按目标点在平面上方的几何条件重抽坡角，μ 保持独立。重抽不等于到达任务不可行，不按策略失败删例",
+  "mu_strata": [
+    0.4,
+    0.55,
+    0.7,
+    0.85,
+    1.0
+  ],
+  "alpha_strata_deg": [
+    -21.0,
+    -18,
+    -10,
+    -3,
+    3,
+    10,
+    18,
+    21.0
+  ],
+  "support_m": [
+    9.5,
+    9.5,
+    0.4
+  ],
+  "slot_spacing_m": 11.0,
+  "geometry_report_edges": {
+    "distance_m": [
+      0,
+      0.3,
+      1.2,
+      2.2,
+      3.0
+    ],
+    "azimuth_rad": [
+      -3.141592653589793,
+      -2.356194490192345,
+      -1.5707963267948966,
+      -0.7853981633974483,
+      0,
+      0.7853981633974483,
+      1.5707963267948966,
+      2.356194490192345,
+      3.141592653589793
+    ],
+    "target_height_m": [
+      0.1,
+      0.25,
+      0.45,
+      0.65,
+      0.85
+    ]
+  },
+  "panel_proposal_streams": {
+    "train": 2026112091,
+    "development": 2026112092,
+    "test": 2026112093
+  },
+  "evaluation_dynamics": {
+    "control_dt_s": 0.02,
+    "timeout_controls": 500,
+    "timeout_s": 10,
+    "complete_natural_episode": true
+  },
+  "grid_selection": {
+    "axis_order": [
+      "distance",
+      "azimuth",
+      "height",
+      "mu",
+      "alpha_deg"
+    ],
+    "actor_source": "同一原 seed43 冻结初态",
+    "training_configurations": 1048576,
+    "ppo_per_candidate": 500,
+    "controls_per_ppo": 24,
+    "parallel_slots": 256,
+    "transition_count_per_candidate": 3072000,
+    "candidates": [
+      [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      [
+        16,
+        8,
+        8,
+        4,
+        8
+      ],
+      [
+        8,
+        8,
+        4,
+        8,
+        16
+      ],
+      [
+        8,
+        8,
+        4,
+        16,
+        8
+      ]
+    ],
+    "double_budget_sensitivity": [
+      16,
+      16,
+      16,
+      4,
+      4
+    ],
+    "evaluation_ppo": [
+      0,
+      100,
+      250,
+      500
+    ],
+    "same_fixed_ema_panel_rows": 504,
+    "primary_metric": "按真实更新间距做梯形积分，u0–u500 的 42 格等权覆盖 AUC 除以 500",
+    "tie_break": "相同 AUC 取 preregistration candidates 列表中最靠前者",
+    "feedback_label_budget_per_candidate": 12000,
+    "feedback": "按发生顺序给估计器前 12000 条自然结束标签，同时独立记录全量自然结束与正例。未达到 12000 条的候选不参与选型，离线回放仅筛查。"
+  },
+  "proposed_main_arm_order": [
+    "NSGS sharp",
+    "按开发 AUC 选定的 32768 格五维候选",
+    "目标投影 Grid16 三维",
+    "全维 Grid16 五维",
+    "逐配置 SGS sharp"
+  ],
+  "supplementary_after_main": [
+    "目标投影 Grid32 三维",
+    "全维 Grid32 五维"
+  ],
+  "active_decision_file": "active_domain_decision.json",
+  "static_friction_calibration": {
+    "ground_mu": 0.4,
+    "unit_slider_static_and_dynamic_mu": 1.0,
+    "calibration_slider_static_and_dynamic_mu": 0.8,
+    "combined_calibration_mu": 0.32,
+    "slope_tests_deg": [
+      0,
+      16,
+      20,
+      -16,
+      -20
+    ],
+    "observation_s": 1.0
+  },
+  "status": "frozen_candidate_pending_verified_physics_and_selected_grid"
+}

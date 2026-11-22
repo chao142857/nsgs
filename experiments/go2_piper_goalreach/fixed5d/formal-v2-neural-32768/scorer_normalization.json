@@ -1,0 +1,86 @@
+{
+  "encoder_sha256": "ee83f1e85da4656557010c007fc41fa84cc97ac2430cc1173ec674d84fe49028",
+  "method": "fit z-score on each frozen train split for range, sin/cos of azimuth, height, ground mu and signed alpha in degrees; E4 Fourier then float32",
+  "data": {
+    "development": {
+      "train_sha256": "dd30b81bcdcb3744d5fd1d9a10b44620ba0bffef9840153cdd8d918469761f67",
+      "coordinates": [
+        "horizontal_distance",
+        "azimuth_sin",
+        "azimuth_cos",
+        "height",
+        "mu",
+        "alpha_deg"
+      ],
+      "mean": [
+        1.9504539094767113,
+        0.0002739496420833658,
+        0.04468313242061791,
+        0.48323818287433085,
+        0.6997668130619388,
+        0.031685362696099874
+      ],
+      "std": [
+        0.7483684810957626,
+        0.7000212096512297,
+        0.7127227011027079,
+        0.2141264672543411,
+        0.1730482126401125,
+        11.569463264443739
+      ],
+      "nonconstant": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "shape": [
+        1048576,
+        30
+      ],
+      "sha256": "8cfc91b503e74ba215c51cf58a8723b7772f1512d7869646c02ddea24f176960"
+    },
+    "formal_candidate": {
+      "train_sha256": "7c19dd9ddcac5b6647a8bb8cf02b0ffa7bc3d1c8aa43b8e5b3064c0ff50512d7",
+      "coordinates": [
+        "horizontal_distance",
+        "azimuth_sin",
+        "azimuth_cos",
+        "height",
+        "mu",
+        "alpha_deg"
+      ],
+      "mean": [
+        1.9504539094767113,
+        0.0002739496420833658,
+        0.04468313242061791,
+        0.48323818287433085,
+        0.7000874498951516,
+        0.010719906183249172
+      ],
+      "std": [
+        0.7483684810957626,
+        0.7000212096512297,
+        0.7127227011027079,
+        0.2141264672543411,
+        0.17316832440328073,
+        11.560750040175261
+      ],
+      "nonconstant": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "shape": [
+        1048576,
+        30
+      ],
+      "sha256": "75848d502d0201c3d1197e9e41643d8213040f4949999b18c6c266704410b515"
+    }
+  }
+}

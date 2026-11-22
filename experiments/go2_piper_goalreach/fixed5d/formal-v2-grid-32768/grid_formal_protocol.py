@@ -1,0 +1,4 @@
+ARM = 'grid_selected_8x8x4x16x8_sharp'
+BINS = (8, 8, 4, 16, 8)
+CELL_MAP = '6737d91c0533602a2b030c9da8f394e3b88f9383f177dd6febe7c1ea08e4f096'
+OCCUPIED = 31182

@@ -1,0 +1,51 @@
+{
+  "phase": 1,
+  "reward": "R0",
+  "sampler": "uniform",
+  "region": "near",
+  "num_envs": 4096,
+  "updates": 1500,
+  "rollout_steps": 24,
+  "student_seed": 42,
+  "from_scratch": true,
+  "evaluation_every_updates": 100,
+  "evaluation_pool_size": 1008,
+  "evaluation_policies": [
+    "raw",
+    "ema099"
+  ],
+  "ema_decay": 0.99,
+  "ema_initialization": "clone the randomly initialized actor including buffers, before update 1",
+  "ema_frequency": "once per complete PPO update",
+  "evaluation_interruption": "discard unfinished training episodes without sampler feedback, restore raw actor and RNG, reset before next rollout",
+  "launch_status": "AUTHORIZED_PENDING_B_COMPLETION",
+  "training_pool": "pools_v4_entry/train.npz",
+  "evaluation_pool": "pools_v4_entry/evaluation.npz",
+  "training_pool_content_sha256": "64d0c6c391c2e3dfcb228d038e12d3d04c36936afe935717c229e694e79c13ad",
+  "evaluation_pool_content_sha256": "7938aa12bd308d2432e5dc6d86776a4875c3b26e15e559a114af7c082dd82ed2",
+  "timeout_penalty": -50.0,
+  "evaluation_strata": "near distance bands 0-2, 2-5, 5-10 cm; other regions low/mid/high height",
+  "initial_action_std": 1.0,
+  "training_metrics_every_updates": 50,
+  "classification": {
+    "evaluation_policy": "ema099",
+    "final_average_updates": [
+      1300,
+      1400,
+      1500
+    ],
+    "pass_thresholds": {
+      "near_success_ge": 0.8,
+      "far_success_ge": 0.6,
+      "physical_failure_le": 0.05
+    },
+    "progress_thresholds": {
+      "near_success_ge": 0.55,
+      "far_success_ge": 0.3
+    },
+    "last500_rising": "EMA near overall at 1000,1100,1200,1300,1400,1500: positive OLS slope AND last-three mean greater than first-three mean",
+    "priority": "Use R0 if it passes, regardless of R1; consider R1 only if R0 does not pass",
+    "no_automatic_extension": true,
+    "no_stage2": true
+  }
+}

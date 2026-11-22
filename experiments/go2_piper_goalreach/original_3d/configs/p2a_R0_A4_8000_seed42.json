@@ -1,0 +1,31 @@
+{
+  "phase": "2A",
+  "arm": "A4",
+  "num_envs": 4096,
+  "updates": 8000,
+  "rollout_steps": 24,
+  "student_seed": 42,
+  "from_scratch": true,
+  "timeout_penalty": -50.0,
+  "ema_decay": 0.99,
+  "evaluation_every_updates": 100,
+  "raw_evaluation_every_updates": 500,
+  "checkpoint_every_updates": 500,
+  "evaluation_pool_size": 2016,
+  "sampler": "manual",
+  "curriculum": {
+    "success_threshold": 0.6,
+    "window_updates": 50,
+    "minimum_episodes": 200,
+    "newest_mass": 0.5
+  },
+  "initial_action_std": 1.0,
+  "gamma": 0.99,
+  "entropy_coef": 0.005,
+  "success_criterion": "hold_and_speed",
+  "training_pool": "pools_v5_natural/train.npz",
+  "evaluation_pool": "pools_v5_natural/evaluation.npz",
+  "training_pool_content_sha256": "434b9b149d886b26c802548306fb80653fae78231aa092f271dbc0eb335af176",
+  "evaluation_pool_content_sha256": "9f6ba65dc40050d8c48187631a0f5f499f347a8dc5acafdb880dbfe5d59fe716",
+  "launch_status": "PREPARED_NOT_AUTHORIZED_TO_RUN"
+}

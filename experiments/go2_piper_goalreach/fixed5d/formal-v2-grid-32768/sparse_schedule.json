@@ -1,0 +1,59 @@
+{
+  "version": "episode-fixed-reach-5d-mu040-100-slope21-r1",
+  "development_nodes": [
+    500,
+    1000,
+    1500,
+    2000,
+    2500,
+    3000,
+    3500,
+    4000,
+    4500,
+    5000,
+    5500,
+    6000,
+    6500,
+    7000,
+    7500,
+    7800,
+    7900,
+    8000
+  ],
+  "ema_504": [
+    500,
+    1500,
+    2500,
+    3500,
+    4500,
+    5500,
+    6500,
+    7500
+  ],
+  "development_full_raw_and_ema": [
+    1000,
+    2000,
+    3000,
+    4000,
+    5000,
+    6000,
+    7000,
+    8000
+  ],
+  "development_full_ema_only": [
+    7800,
+    7900
+  ],
+  "ordinary_hundred_evaluation": false,
+  "ordinary_hundred_discard": false,
+  "terminal_update": 8000,
+  "terminal_rows": 8064,
+  "total_evaluation_rows": 84672,
+  "auc_interval": [
+    500,
+    8000
+  ],
+  "auc_normalization_updates": 7500,
+  "panel_sha256": "7f57ad3becd496fdcdb7192d02a4c5b332294460978576e1a69581be2dd497db",
+  "from_initial_weights": true
+}

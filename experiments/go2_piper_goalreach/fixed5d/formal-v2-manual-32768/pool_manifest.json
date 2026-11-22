@@ -1,0 +1,485 @@
+{
+  "version": "episode-fixed-reach-5d-mu040-100-slope21-r1",
+  "authorized_to_dispatch_formal": false,
+  "preregistration_sha256": "2ba0ee9859a36238a5f3c849e32672ca2053ea5e0a40da872274f1a9a9508702",
+  "generator_sha256": "3e215a4b2efffdfaa47dafc2242ac835a3a9abf2d4688a468bd012ecb6c24793",
+  "native_input_sha256": {
+    "train": "37e66100194b2e00058f299ab8af85e6a75c324e8b06f48c0df7701dbe90862b",
+    "evaluation": "d50591e1af543a1f3ff1a2630d624e457a02bd7ea015a5160d0afab55b837edf"
+  },
+  "panels": {
+    "train": {
+      "sha256": "7c19dd9ddcac5b6647a8bb8cf02b0ffa7bc3d1c8aa43b8e5b3064c0ff50512d7",
+      "rows": 1048576,
+      "region_counts": [
+        20992,
+        62912,
+        209728,
+        754944
+      ],
+      "redrawn_region_counts": [
+        0,
+        49,
+        10056,
+        97167
+      ],
+      "redrawn_region_rate": [
+        0.0,
+        0.0007788657171922686,
+        0.047947818126335064,
+        0.12870755976602238
+      ],
+      "redrawn_configurations": 107272,
+      "condition_quantiles": {
+        "mu": [
+          0.4000002763685986,
+          0.40600845849251416,
+          0.5502439137587842,
+          0.7000649436845644,
+          0.8500280742792157,
+          0.9940355830836693,
+          0.9999986251752967
+        ],
+        "alpha_deg": [
+          -20.999991798398014,
+          -20.495698535808366,
+          -9.519974654180093,
+          0.007085933306788306,
+          9.558982731904699,
+          20.49578286041391,
+          20.999985889295196
+        ]
+      }
+    },
+    "development": {
+      "sha256": "53e5959c620607e6d36d33cce50a169dd1b872ea6bd5dbf202fe0003a661bd2e",
+      "rows": 4032,
+      "region_counts": [
+        504,
+        504,
+        1008,
+        2016
+      ],
+      "redrawn_region_counts": [
+        0,
+        1,
+        55,
+        266
+      ],
+      "redrawn_region_rate": [
+        0.0,
+        0.001984126984126984,
+        0.054563492063492064,
+        0.13194444444444445
+      ],
+      "redrawn_configurations": 322,
+      "condition_quantiles": {
+        "mu": [
+          0.4002452315670978,
+          0.4065286211292289,
+          0.5531846169314905,
+          0.696542471487708,
+          0.8441118888278505,
+          0.9946804245699034,
+          0.9999510052777446
+        ],
+        "alpha_deg": [
+          -20.94442149476478,
+          -20.40364185341977,
+          -9.766806589420991,
+          0.08185856323071228,
+          10.01574423017161,
+          20.541278583439787,
+          20.996619249024732
+        ]
+      }
+    },
+    "development_504": {
+      "sha256": "7f57ad3becd496fdcdb7192d02a4c5b332294460978576e1a69581be2dd497db",
+      "rows": 504
+    },
+    "test": {
+      "sha256": "4353ce5b7a6d221177a35ef06cf467850dd2bea51bc0908ff041aa4e34d59daa",
+      "rows": 8064,
+      "region_counts": [
+        1008,
+        1008,
+        2016,
+        4032
+      ],
+      "redrawn_region_counts": [
+        0,
+        1,
+        123,
+        513
+      ],
+      "redrawn_region_rate": [
+        0.0,
+        0.000992063492063492,
+        0.06101190476190476,
+        0.12723214285714285
+      ],
+      "redrawn_configurations": 637,
+      "condition_quantiles": {
+        "mu": [
+          0.40005023896059067,
+          0.4053105037612508,
+          0.5494072431996919,
+          0.701469337807607,
+          0.8514741671620086,
+          0.9918027556556782,
+          0.9996628580268152
+        ],
+        "alpha_deg": [
+          -20.99218808124261,
+          -20.592809124443086,
+          -9.75256744416964,
+          0.15200613368249272,
+          9.959506201016428,
+          20.447078751149945,
+          20.995741024332418
+        ]
+      }
+    }
+  },
+  "train_grid": {
+    "8,8,8,8,8": {
+      "bins": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "total": 32768,
+      "occupied": 30849,
+      "configs_per_occupied_cell": [
+        1.0,
+        14.0,
+        34.0,
+        49.0,
+        175.0
+      ],
+      "row_cell_sha256": "d1fa24d4b983bf09b8d8f697685402efb2f4dc3d52ff6ed9c5d3e9f503a9663d"
+    },
+    "16,8,8,4,8": {
+      "bins": [
+        16,
+        8,
+        8,
+        4,
+        8
+      ],
+      "total": 32768,
+      "occupied": 30286,
+      "configs_per_occupied_cell": [
+        1.0,
+        11.0,
+        35.0,
+        50.0,
+        208.0
+      ],
+      "row_cell_sha256": "2b77658512e7ef37008186509c20cafd6ff8ab87917e1a5bb3eaeff402276d0c"
+    },
+    "8,8,4,8,16": {
+      "bins": [
+        8,
+        8,
+        4,
+        8,
+        16
+      ],
+      "total": 32768,
+      "occupied": 31050,
+      "configs_per_occupied_cell": [
+        1.0,
+        13.0,
+        34.0,
+        49.0,
+        145.0
+      ],
+      "row_cell_sha256": "7ffe921b08bc5690751c13792ecb3a2100a2f66aed332fa56ef0c6c7d948f908"
+    },
+    "8,8,4,16,8": {
+      "bins": [
+        8,
+        8,
+        4,
+        16,
+        8
+      ],
+      "total": 32768,
+      "occupied": 31182,
+      "configs_per_occupied_cell": [
+        1.0,
+        13.0,
+        33.0,
+        49.0,
+        141.0
+      ],
+      "row_cell_sha256": "6737d91c0533602a2b030c9da8f394e3b88f9383f177dd6febe7c1ea08e4f096"
+    },
+    "16,16,16,4,4": {
+      "bins": [
+        16,
+        16,
+        16,
+        4,
+        4
+      ],
+      "total": 65536,
+      "occupied": 58796,
+      "configs_per_occupied_cell": [
+        1.0,
+        7.0,
+        17.0,
+        25.0,
+        255.0
+      ],
+      "row_cell_sha256": "908308bcc76ff16408c389aa05f8a0cbf39f0d79548a2172aae7327eee301498"
+    },
+    "16,16,16": {
+      "bins": [
+        16,
+        16,
+        16
+      ],
+      "total": 4096,
+      "occupied": 3983,
+      "configs_per_occupied_cell": [
+        1.0,
+        95.0,
+        283.0,
+        375.5,
+        3661.0
+      ],
+      "row_cell_sha256": "5a8abf918834dbb3dcc14a93c752f5a1dfe83c1e15315982986cce7bd2d18830"
+    },
+    "16,16,16,16,16": {
+      "bins": [
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "total": 1048576,
+      "occupied": 549469,
+      "configs_per_occupied_cell": [
+        1.0,
+        1.0,
+        2.0,
+        2.0,
+        28.0
+      ],
+      "row_cell_sha256": "7d487f9191d20a264bbccf5e1da4343eb5153999339efa8975f67d799faaa14f"
+    },
+    "32,32,32": {
+      "bins": [
+        32,
+        32,
+        32
+      ],
+      "total": 32768,
+      "occupied": 29569,
+      "configs_per_occupied_cell": [
+        1.0,
+        24.0,
+        36.0,
+        48.0,
+        2060.0
+      ],
+      "row_cell_sha256": "c12301da9600a9a78b67b67a9460d614a7381102a67afe2bda5116600c9ad408"
+    },
+    "32,32,32,32,32": {
+      "bins": [
+        32,
+        32,
+        32,
+        32,
+        32
+      ],
+      "total": 33554432,
+      "occupied": 1017439,
+      "configs_per_occupied_cell": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.0
+      ],
+      "row_cell_sha256": "beaf06c50a77231cc36ce8d1a203d27860a292851cea70ae425fe848f45aa67e"
+    }
+  },
+  "uniform_proposal_grid": {
+    "8,8,8,8,8": {
+      "bins": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "total": 32768,
+      "occupied": 31815,
+      "configs_per_occupied_cell": [
+        1.0,
+        15.0,
+        35.0,
+        47.0,
+        175.0
+      ],
+      "row_cell_sha256": "bbf80824b71b109cafded16a568bcf7f567bfded5b5ab9ecef5e0a2cfd8d3fc8"
+    },
+    "16,8,8,4,8": {
+      "bins": [
+        16,
+        8,
+        8,
+        4,
+        8
+      ],
+      "total": 32768,
+      "occupied": 31268,
+      "configs_per_occupied_cell": [
+        1.0,
+        16.0,
+        35.0,
+        47.0,
+        208.0
+      ],
+      "row_cell_sha256": "2fa89e03a5d394c5bf21b0b4c2cf554c019f87d83855022002012564567f4188"
+    },
+    "8,8,4,8,16": {
+      "bins": [
+        8,
+        8,
+        4,
+        8,
+        16
+      ],
+      "total": 32768,
+      "occupied": 31963,
+      "configs_per_occupied_cell": [
+        1.0,
+        15.0,
+        35.0,
+        47.0,
+        145.0
+      ],
+      "row_cell_sha256": "35f1f2f1cd9604874d453afce4aec273a4da11b249febd1da423799bae4cfe09"
+    },
+    "8,8,4,16,8": {
+      "bins": [
+        8,
+        8,
+        4,
+        16,
+        8
+      ],
+      "total": 32768,
+      "occupied": 31971,
+      "configs_per_occupied_cell": [
+        1.0,
+        15.0,
+        35.0,
+        47.0,
+        141.0
+      ],
+      "row_cell_sha256": "0728275acd1a8e14ebcc2515758e4b12ac98fe6a3229b5f000ad74c8bab750e4"
+    },
+    "16,16,16,4,4": {
+      "bins": [
+        16,
+        16,
+        16,
+        4,
+        4
+      ],
+      "total": 65536,
+      "occupied": 60818,
+      "configs_per_occupied_cell": [
+        1.0,
+        9.0,
+        18.0,
+        24.0,
+        255.0
+      ],
+      "row_cell_sha256": "54ea2c09bf27f36ad355d5ff16fd38429b2f2e35d1f01a5ea1ac36ae1219d1a0"
+    },
+    "16,16,16": {
+      "bins": [
+        16,
+        16,
+        16
+      ],
+      "total": 4096,
+      "occupied": 3983,
+      "configs_per_occupied_cell": [
+        1.0,
+        95.0,
+        283.0,
+        375.5,
+        3661.0
+      ],
+      "row_cell_sha256": "5a8abf918834dbb3dcc14a93c752f5a1dfe83c1e15315982986cce7bd2d18830"
+    },
+    "16,16,16,16,16": {
+      "bins": [
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "total": 1048576,
+      "occupied": 580884,
+      "configs_per_occupied_cell": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        28.0
+      ],
+      "row_cell_sha256": "d099cc79dcddfe27a4a979b4ee2f8240b04981249eca10d30f79dc10ce362f90"
+    },
+    "32,32,32": {
+      "bins": [
+        32,
+        32,
+        32
+      ],
+      "total": 32768,
+      "occupied": 29569,
+      "configs_per_occupied_cell": [
+        1.0,
+        24.0,
+        36.0,
+        48.0,
+        2060.0
+      ],
+      "row_cell_sha256": "c12301da9600a9a78b67b67a9460d614a7381102a67afe2bda5116600c9ad408"
+    },
+    "32,32,32,32,32": {
+      "bins": [
+        32,
+        32,
+        32,
+        32,
+        32
+      ],
+      "total": 33554432,
+      "occupied": 1020719,
+      "configs_per_occupied_cell": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        8.0
+      ],
+      "row_cell_sha256": "d3bd898c9d5d71720942651694c6f83bdea0f4ea8448ccce529f49f0ef8e19b1"
+    }
+  },
+  "mapping_sha256": "695dad68f486484ce2c03e391c76ba2ed23049c094cdb541923298d91f511931",
+  "geometry_density_sha256": "12e9fa7969c16975596e7ee5118ec2ec732c273533be59272c4930a2fa57c5c4"
+}

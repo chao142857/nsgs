@@ -1,0 +1,23 @@
+{
+  "release_passed": true,
+  "version": "episode-fixed-reach-5d-mu040-100-slope21-r1",
+  "seed": 43,
+  "num_envs": 4096,
+  "updates_per_arm": 8000,
+  "methods": [
+    "nsgs_e4_sharp"
+  ],
+  "simulator_device": "cuda:0",
+  "learner_device": "cuda:0",
+  "evaluation_seed": 20261120,
+  "index_manifest_sha256": "4e03d14575dce6bc50569d6c64685ac620d2271ad66796f7b3c764873784f70b",
+  "actor_sha256": "85664b37f007e5f6f4a819d931c58c483b6dce7b6f68afdb6aa3fb5124c02330",
+  "pool_sha256": {
+    "train": "7c19dd9ddcac5b6647a8bb8cf02b0ffa7bc3d1c8aa43b8e5b3064c0ff50512d7",
+    "development": "53e5959c620607e6d36d33cce50a169dd1b872ea6bd5dbf202fe0003a661bd2e",
+    "test": "4353ce5b7a6d221177a35ef06cf467850dd2bea51bc0908ff041aa4e34d59daa"
+  },
+  "initial_weights_sha256": "20e449df84612c18fbac1db5d54ffefeba5b5211003ac3d04091e28111b7b721",
+  "initial_weights_file": "/verified_actor.pt",
+  "execution_release": "episode-fixed-reach-5d-mu040-100-slope21-gpu4096-r1"
+}

@@ -1,0 +1,27 @@
+{
+  "families": [
+    "gap",
+    "pit",
+    "radial_beam",
+    "stairs",
+    "parallel_box",
+    "balance_beam",
+    "stepping_stones",
+    "jump_box",
+    "maze",
+    "contour",
+    "islands",
+    "climb_box",
+    "inverted_slope"
+  ],
+  "layouts": 260,
+  "distinct_raster_hashes": 260,
+  "configs": 104000,
+  "crossing": 52000,
+  "same_side": 52000,
+  "uncollapsed_train_holdout": true,
+  "geometry_sha": [
+    "d6d21d6bb94dcdb6ef2c968abd3ffed54751ca2b039ee61d53dec64547ea568f",
+    "6447f24738a21925a0bc92ee7dbab4ad6ebe18a781dbc34c2a2bb023f53e7148"
+  ]
+}

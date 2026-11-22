@@ -1,0 +1,24 @@
+{
+  "decision": "episode-fixed-reach-5d-mu040-100-slope21",
+  "active_for": [
+    "development",
+    "training_pool_generation",
+    "fixed_evaluation_pool_generation"
+  ],
+  "ground_static_and_dynamic_mu": [
+    0.4,
+    1.0
+  ],
+  "signed_slope_degrees": [
+    -21.0,
+    21.0
+  ],
+  "positive_slope": "rises along world +x",
+  "draw": "two independent continuous uniform proposals per configuration; retain world target and mu, redraw only alpha for the frozen geometric clearance rule",
+  "scope": "Proceed directly to formal training on the existing seed/host assignments when the registered physics, learnability and grid selection checks pass and the host is ready. No further user approval needed.",
+  "previous_development_domains": [
+    "mu[0.40,1.00], alpha[-6,6]",
+    "mu[0.20,1.00], alpha[-30,30]",
+    "mu[0.40,1.00], alpha[-21.8,21.8]"
+  ]
+}
