@@ -14,11 +14,11 @@ SUCCESS_HOLD = 20
 CONTROL_DT = .02
 MAX_STEPS = 500
 WEIGHTS = (50., -50., -.001, -.05, -.25, -.05, .3)
-FORWARD_WARMUP_ITERATIONS = 500
+FORWARD_WARMUP_PPO_UPDATES = 500
 
 
 def reward_weights(iteration):
-    return WEIGHTS if iteration < FORWARD_WARMUP_ITERATIONS else (*WEIGHTS[:-1], 0.)
+    return WEIGHTS if iteration < FORWARD_WARMUP_PPO_UPDATES else (*WEIGHTS[:-1], 0.)
 
 
 def terminal(root_z, base_force, near_steps, steps):
@@ -44,12 +44,12 @@ def controlled_cases():
     # The tensorized runtime reads the same scalar constants. These cases exercise
     # the label interpretation and priority independently of physical actuation.
     cases = [
-        ("inside", (0.20, 0.10, 0.61), (0.,0.,0.), 4, 0., 9, "success"),
-        ("outside_xy", (0.41, 0., 0.60), (0.,0.,0.), 4, 0., 9, None),
-        ("under_goal", (0., 0., 0.22), (0.,0.,0.), 4, 0., 9, None),
-        ("short_hold", (0., 0., 0.6), (0.,0.,0.), 3, 0., 9, None),
-        ("base_collision", (0., 0., 0.6), (0.,0.,0.), 4, 42., 9, "base_contact"),
-        ("drop", (0., 0., -1.1), (0.,0.,0.), 4, 0., 9, "drop"),
+        ("inside", (0.20, 0.10, 0.61), (0.,0.,0.), SUCCESS_HOLD-1, 0., 19, "success"),
+        ("outside_xy", (0.41, 0., 0.60), (0.,0.,0.), SUCCESS_HOLD-1, 0., 19, None),
+        ("under_goal", (0., 0., 0.22), (0.,0.,0.), SUCCESS_HOLD-1, 0., 19, None),
+        ("short_hold", (0., 0., 0.6), (0.,0.,0.), SUCCESS_HOLD-2, 0., 18, None),
+        ("base_collision", (0., 0., 0.6), (0.,0.,0.), SUCCESS_HOLD-1, 42., 19, "base_contact"),
+        ("drop", (0., 0., -1.1), (0.,0.,0.), SUCCESS_HOLD-1, 0., 19, "drop"),
         ("timeout", (0.41, 0., 0.6), (0.,0.,0.), 4, 0., MAX_STEPS, "timeout"),
     ]
     results = []

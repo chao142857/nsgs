@@ -1,4 +1,3 @@
-from functools import partial
 import numpy as np
 import torch
 import navigation as nav
@@ -9,9 +8,19 @@ class BatchedScene(GoalScene):
     def __init__(self,count):
         layouts=[(a,b,c) for a in range(13) for b in range(2) for c in range(10)]
         super().__init__([layouts[i%260] for i in range(count)],False,tile_bank=layouts)
-        self.lookup=torch.as_tensor(np.load(ROOT/'geometry.npy'),device=self.device)
+        self.select_bank('train')
         self.atlas_offsets=torch.tensor([self.bank[key] for key in layouts],device=self.device)
         self.task_ids=torch.full((count,),-1,device=self.device,dtype=torch.long)
+    def select_bank(self, split):
+        if split not in ('train', 'holdout'):
+            raise ValueError(split)
+        geometry = 'geometry.npy' if split == 'train' else 'holdout.npy'
+        self.lookup = torch.as_tensor(np.load(ROOT / geometry, allow_pickle=False), device=self.device)
+        self.spawn_yaw = torch.as_tensor(np.load(ROOT / f'{split}_yaw.npy', allow_pickle=False), device=self.device)
+        if self.spawn_yaw.shape != (len(self.lookup),) or self.lookup.shape != (104000, 7):
+            raise ValueError("Malformed spawn/target/yaw bank")
+        self.split = split
+
     def place(self,slots,ids,verify=False):
         self.scene.reset(slots)
         g=self.lookup[ids]; offsets=self.atlas_offsets[ids//400]
@@ -19,8 +28,7 @@ class BatchedScene(GoalScene):
         self.start_locations[slots]=g[:,:3]+offsets; self.targets[slots]=g[:,3:6]+offsets
         roots=self.robot.data.default_root_state[slots].clone()
         roots[:,:3]=self.start_locations[slots];roots[:,2]+=nav.BASE_HEIGHT+g[:,6]
-        # A start pose is independent of the goal. Face the obstacle from either apron.
-        yaw = torch.where(g[:,0]<0,0.,torch.pi) + .20*torch.sin(13*g[:,0]+7*g[:,1])
+        yaw = self.spawn_yaw[ids]
         roots[:,3:7]=torch.stack((torch.cos(yaw/2),torch.zeros_like(yaw),torch.zeros_like(yaw),torch.sin(yaw/2)),dim=1)
         self.robot.write_root_pose_to_sim(roots[:,:7],env_ids=slots)
         self.robot.write_root_velocity_to_sim(roots[:,7:],env_ids=slots)

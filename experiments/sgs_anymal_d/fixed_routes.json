@@ -1,0 +1,386 @@
+[
+  {
+    "terrain": "gap",
+    "route": "gap",
+    "id": 1790,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 9,
+    "goal_index": 10,
+    "start_support": 0,
+    "goal_support": 1,
+    "start": [
+      -0.8830660551776194,
+      1.2945495752535798,
+      0.0
+    ],
+    "goal": [
+      0.7254279551735774,
+      -0.050346893354912756,
+      0.19556
+    ],
+    "horizontal_m": 2.0966638959574015,
+    "delta_z_m": 0.19556,
+    "local_event": "jump gap"
+  },
+  {
+    "terrain": "pit",
+    "route": "pit",
+    "id": 9778,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 8,
+    "goal_index": 18,
+    "start_support": 0,
+    "goal_support": 2,
+    "start": [
+      -2.3822974507953734,
+      0.09798804609845452,
+      0.0
+    ],
+    "goal": [
+      1.7812082870053525,
+      0.7671159440941601,
+      0.0
+    ],
+    "horizontal_m": 4.216931606343138,
+    "delta_z_m": 0.0,
+    "local_event": "enter and leave depression"
+  },
+  {
+    "terrain": "radial_beam",
+    "route": "radial_beam",
+    "id": 17630,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 1,
+    "goal_index": 10,
+    "start_support": 4,
+    "goal_support": 6,
+    "start": [
+      -1.013548448240124,
+      0.7711140064904687,
+      0.04
+    ],
+    "goal": [
+      -1.2951744969212542,
+      -1.1616603334483404,
+      0.04
+    ],
+    "horizontal_m": 1.9531845484801598,
+    "delta_z_m": 0.0,
+    "local_event": "cross spoke hub"
+  },
+  {
+    "terrain": "stairs",
+    "route": "stairs_up",
+    "id": 25907,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 15,
+    "goal_index": 7,
+    "start_support": 0,
+    "goal_support": 8,
+    "start": [
+      -3.4213150747370937,
+      1.234398843767535,
+      0.0
+    ],
+    "goal": [
+      3.246886647858745,
+      1.145112827099832,
+      0.93778
+    ],
+    "horizontal_m": 6.6687994576237255,
+    "delta_z_m": 0.93778,
+    "local_event": "traverse several risers"
+  },
+  {
+    "terrain": "stairs",
+    "route": "stairs_down",
+    "id": 29637,
+    "terrain_seed": 1,
+    "level": 4,
+    "start_index": 1,
+    "goal_index": 17,
+    "start_support": 8,
+    "goal_support": 0,
+    "start": [
+      3.1709791260290308,
+      0.39717762531583833,
+      0.93778
+    ],
+    "goal": [
+      -3.516606251593695,
+      1.2190992342889786,
+      0.0
+    ],
+    "horizontal_m": 6.737904222700877,
+    "delta_z_m": -0.93778,
+    "local_event": "traverse several risers"
+  },
+  {
+    "terrain": "parallel_box",
+    "route": "parallel_box",
+    "id": 33886,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 14,
+    "goal_index": 6,
+    "start_support": 0,
+    "goal_support": 1,
+    "start": [
+      -3.727356517080819,
+      1.9254143134869888,
+      0.0
+    ],
+    "goal": [
+      3.49816373228314,
+      0.23174353508302048,
+      0.0
+    ],
+    "horizontal_m": 7.4213653447049825,
+    "delta_z_m": 0.0,
+    "local_event": "cross parallel boxes"
+  },
+  {
+    "terrain": "balance_beam",
+    "route": "balance_beam",
+    "id": 41888,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 14,
+    "goal_index": 8,
+    "start_support": 0,
+    "goal_support": 2,
+    "start": [
+      -2.6581693213937685,
+      -0.039316741388631095,
+      0.0
+    ],
+    "goal": [
+      2.783978378025059,
+      0.4945247062457297,
+      0.0
+    ],
+    "horizontal_m": 5.468268306649006,
+    "delta_z_m": 0.0,
+    "local_event": "cross narrow beam"
+  },
+  {
+    "terrain": "stepping_stones",
+    "route": "stepping_stones",
+    "id": 49719,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 5,
+    "goal_index": 19,
+    "start_support": 0,
+    "goal_support": 1,
+    "start": [
+      -3.4196432579919085,
+      -0.3330800400880928,
+      0.0
+    ],
+    "goal": [
+      3.6193137847120846,
+      -1.22943068644156,
+      0.0
+    ],
+    "horizontal_m": 7.095798808467615,
+    "delta_z_m": 0.0,
+    "local_event": "cross three isolated footholds"
+  },
+  {
+    "terrain": "jump_box",
+    "route": "jump_box",
+    "id": 57882,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 14,
+    "goal_index": 2,
+    "start_support": 11,
+    "goal_support": 14,
+    "start": [
+      -1.4612730817429902,
+      0.10263841550909916,
+      0.35557
+    ],
+    "goal": [
+      -0.13470107209026658,
+      -0.12032820125505929,
+      0.15097
+    ],
+    "horizontal_m": 1.3451793222412098,
+    "delta_z_m": -0.2046,
+    "local_event": "jump between disconnected boxes"
+  },
+  {
+    "terrain": "maze",
+    "route": "maze",
+    "id": 65895,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 14,
+    "goal_index": 15,
+    "start_support": 0,
+    "goal_support": 3,
+    "start": [
+      -1.927985500362748,
+      0.41667334554716134,
+      0.0
+    ],
+    "goal": [
+      2.234274926705175,
+      -0.5801571414593105,
+      0.0
+    ],
+    "horizontal_m": 4.2799629534099015,
+    "delta_z_m": 0.0,
+    "local_event": "navigate around walls"
+  },
+  {
+    "terrain": "contour",
+    "route": "contour",
+    "id": 73652,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 2,
+    "goal_index": 12,
+    "start_support": 0,
+    "goal_support": 4,
+    "start": [
+      -2.681019305830576,
+      1.6139769500239434,
+      0.0
+    ],
+    "goal": [
+      3.069613280215222,
+      0.8104841553259223,
+      0.0
+    ],
+    "horizontal_m": 5.806494278893541,
+    "delta_z_m": 0.0,
+    "local_event": "traverse uneven relief"
+  },
+  {
+    "terrain": "islands",
+    "route": "level_neighbors",
+    "id": 81956,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 17,
+    "goal_index": 16,
+    "start_support": 3,
+    "goal_support": 0,
+    "start": [
+      -2.2755652257907886,
+      -0.23003924555227745,
+      0.18
+    ],
+    "goal": [
+      -2.5661797756408897,
+      -1.7595141468254734,
+      0.18
+    ],
+    "horizontal_m": 1.5568398408986164,
+    "delta_z_m": 0.0,
+    "local_event": "transfer between disconnected islands"
+  },
+  {
+    "terrain": "islands",
+    "route": "up_to_center",
+    "id": 81769,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 8,
+    "goal_index": 9,
+    "start_support": 3,
+    "goal_support": 4,
+    "start": [
+      -1.9656571612993132,
+      0.09091578786618831,
+      0.18
+    ],
+    "goal": [
+      -0.19129212579075328,
+      -0.22194330093621004,
+      0.72
+    ],
+    "horizontal_m": 1.8017358543031663,
+    "delta_z_m": 0.54,
+    "local_event": "transfer between disconnected islands"
+  },
+  {
+    "terrain": "islands",
+    "route": "down_from_center",
+    "id": 81667,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 3,
+    "goal_index": 7,
+    "start_support": 4,
+    "goal_support": 1,
+    "start": [
+      0.32794442168369703,
+      -0.18803262911221139,
+      0.72
+    ],
+    "goal": [
+      0.10680398913755967,
+      -1.8330138244197958,
+      0.18
+    ],
+    "horizontal_m": 1.6597789683636377,
+    "delta_z_m": -0.54,
+    "local_event": "transfer between disconnected islands"
+  },
+  {
+    "terrain": "climb_box",
+    "route": "climb_box",
+    "id": 89689,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 4,
+    "goal_index": 9,
+    "start_support": 0,
+    "goal_support": 16,
+    "start": [
+      -4.394698420070617,
+      -2.1887624470859506,
+      0.0
+    ],
+    "goal": [
+      1.6691045943629432,
+      -1.5916342308894362,
+      0.54889
+    ],
+    "horizontal_m": 6.0931329465580815,
+    "delta_z_m": 0.54889,
+    "local_event": "climb or descend elevated boxes"
+  },
+  {
+    "terrain": "inverted_slope",
+    "route": "inverted_slope",
+    "id": 97616,
+    "terrain_seed": 0,
+    "level": 4,
+    "start_index": 0,
+    "goal_index": 16,
+    "start_support": 0,
+    "goal_support": 4,
+    "start": [
+      -2.4374205132199607,
+      0.08000095740219554,
+      0.0
+    ],
+    "goal": [
+      2.7896499133113024,
+      -0.037098194531268745,
+      0.0
+    ],
+    "horizontal_m": 5.228381915593127,
+    "delta_z_m": 0.0,
+    "local_event": "descend and ascend the trough"
+  }
+]

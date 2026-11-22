@@ -1,27 +1,235 @@
 {
-  "families": [
-    "gap",
-    "pit",
-    "radial_beam",
-    "stairs",
-    "parallel_box",
-    "balance_beam",
-    "stepping_stones",
-    "jump_box",
-    "maze",
-    "contour",
-    "islands",
-    "climb_box",
-    "inverted_slope"
-  ],
+  "version": "sgs-fig7-physical-patches-v3",
   "layouts": 260,
-  "distinct_raster_hashes": 260,
-  "configs": 104000,
-  "crossing": 52000,
-  "same_side": 52000,
-  "uncollapsed_train_holdout": true,
-  "geometry_sha": [
-    "d6d21d6bb94dcdb6ef2c968abd3ffed54751ca2b039ee61d53dec64547ea568f",
-    "6447f24738a21925a0bc92ee7dbab4ad6ebe18a781dbc34c2a2bb023f53e7148"
-  ]
+  "n_per_bank": 104000,
+  "classes": [
+    "birth_near",
+    "same_platform",
+    "obstacle"
+  ],
+  "route_types": [
+    "same_zone",
+    "cross_gap",
+    "full_crossing",
+    "partial_crossing",
+    "hub_or_adjacent",
+    "spokes_via_hub",
+    "stairs_up",
+    "stairs_down",
+    "object_to_object",
+    "object_to_apron",
+    "through_object_field",
+    "single_gate",
+    "multi_gate",
+    "local_relief",
+    "full_relief",
+    "other_separate_outer",
+    "level_neighbors",
+    "same_island",
+    "up_to_center",
+    "down_from_center"
+  ],
+  "terrains": [
+    {
+      "terrain": "gap",
+      "train_classes": {
+        "birth_near": 119,
+        "same_platform": 3881,
+        "obstacle": 4000
+      },
+      "holdout_classes": {
+        "birth_near": 103,
+        "same_platform": 3897,
+        "obstacle": 4000
+      },
+      "local_skill": "jump gap"
+    },
+    {
+      "terrain": "pit",
+      "train_classes": {
+        "birth_near": 134,
+        "same_platform": 2531,
+        "obstacle": 5335
+      },
+      "holdout_classes": {
+        "birth_near": 177,
+        "same_platform": 2494,
+        "obstacle": 5329
+      },
+      "local_skill": "enter and leave depression"
+    },
+    {
+      "terrain": "radial_beam",
+      "train_classes": {
+        "birth_near": 268,
+        "same_platform": 627,
+        "obstacle": 7105
+      },
+      "holdout_classes": {
+        "birth_near": 260,
+        "same_platform": 633,
+        "obstacle": 7107
+      },
+      "local_skill": "cross spoke hub"
+    },
+    {
+      "terrain": "stairs",
+      "train_classes": {
+        "birth_near": 109,
+        "same_platform": 787,
+        "obstacle": 7104
+      },
+      "holdout_classes": {
+        "birth_near": 100,
+        "same_platform": 796,
+        "obstacle": 7104
+      },
+      "local_skill": "traverse several risers"
+    },
+    {
+      "terrain": "parallel_box",
+      "train_classes": {
+        "birth_near": 578,
+        "same_platform": 149,
+        "obstacle": 7273
+      },
+      "holdout_classes": {
+        "birth_near": 568,
+        "same_platform": 156,
+        "obstacle": 7276
+      },
+      "local_skill": "cross parallel boxes"
+    },
+    {
+      "terrain": "balance_beam",
+      "train_classes": {
+        "birth_near": 222,
+        "same_platform": 3378,
+        "obstacle": 4400
+      },
+      "holdout_classes": {
+        "birth_near": 219,
+        "same_platform": 3379,
+        "obstacle": 4402
+      },
+      "local_skill": "cross narrow beam"
+    },
+    {
+      "terrain": "stepping_stones",
+      "train_classes": {
+        "birth_near": 598,
+        "same_platform": 131,
+        "obstacle": 7271
+      },
+      "holdout_classes": {
+        "birth_near": 587,
+        "same_platform": 140,
+        "obstacle": 7273
+      },
+      "local_skill": "cross three isolated footholds"
+    },
+    {
+      "terrain": "jump_box",
+      "train_classes": {
+        "birth_near": 573,
+        "same_platform": 158,
+        "obstacle": 7269
+      },
+      "holdout_classes": {
+        "birth_near": 558,
+        "same_platform": 167,
+        "obstacle": 7275
+      },
+      "local_skill": "jump between disconnected boxes"
+    },
+    {
+      "terrain": "maze",
+      "train_classes": {
+        "birth_near": 261,
+        "same_platform": 1739,
+        "obstacle": 6000
+      },
+      "holdout_classes": {
+        "birth_near": 285,
+        "same_platform": 1715,
+        "obstacle": 6000
+      },
+      "local_skill": "navigate around walls"
+    },
+    {
+      "terrain": "contour",
+      "train_classes": {
+        "birth_near": 523,
+        "same_platform": 1081,
+        "obstacle": 6396
+      },
+      "holdout_classes": {
+        "birth_near": 503,
+        "same_platform": 1100,
+        "obstacle": 6397
+      },
+      "local_skill": "traverse uneven relief"
+    },
+    {
+      "terrain": "islands",
+      "train_classes": {
+        "birth_near": 408,
+        "same_platform": 480,
+        "obstacle": 7112
+      },
+      "holdout_classes": {
+        "birth_near": 419,
+        "same_platform": 473,
+        "obstacle": 7108
+      },
+      "local_skill": "transfer between disconnected islands"
+    },
+    {
+      "terrain": "climb_box",
+      "train_classes": {
+        "birth_near": 567,
+        "same_platform": 160,
+        "obstacle": 7273
+      },
+      "holdout_classes": {
+        "birth_near": 555,
+        "same_platform": 174,
+        "obstacle": 7271
+      },
+      "local_skill": "climb or descend elevated boxes"
+    },
+    {
+      "terrain": "inverted_slope",
+      "train_classes": {
+        "birth_near": 272,
+        "same_platform": 1334,
+        "obstacle": 6394
+      },
+      "holdout_classes": {
+        "birth_near": 304,
+        "same_platform": 1310,
+        "obstacle": 6386
+      },
+      "local_skill": "descend and ascend the trough"
+    }
+  ],
+  "geometry_sha256": [
+    "541a56c08ffab567d419d651191a7315fcd85d823f12fe79cf28c95908da80eb",
+    "75df2201f7db2b53cb807fedc7da9af3881e1731e50dddd7207656cca44c7736"
+  ],
+  "distinct_mesh_height_hashes": 221,
+  "collision_sha256": "7f04b689502765516fb9aea5d5a71488324260db2363a30b7a50d7f96e73beb6",
+  "yaw_sha256": [
+    "cc683013fd50f21c5afe53d4f1ed3dab9c86505bc7f7af937533c14cdb48699c",
+    "46309a5c8e5ccea6878867ea2a13050010052ab3bf79d89fed5ee2dc7d92c8f7"
+  ],
+  "pool_seed": [
+    17221,
+    "kind",
+    "terrain_seed",
+    "level",
+    "split",
+    "role"
+  ],
+  "exact_train_holdout_rows_in_common": 0
 }
