@@ -30,10 +30,10 @@ class Clock:
             if arrived and self.first_arrival is None and t<=DEADLINE:
                 self.first_arrival=t
             if arrived and stable:
-                if not self.hold and t<=DEADLINE:
+                if self.hold_start is None and t<=DEADLINE:
                     self.hold_start=t
-                if self.hold or t<=DEADLINE:
-                    self.hold+=1
+                if self.hold_start is not None:
+                    self.hold=t-self.hold_start
                     self.best_hold=max(self.best_hold,self.hold)
             else:
                 if self.hold:
@@ -42,7 +42,7 @@ class Clock:
                 self.hold_start=None
             if self.hold>=HOLD:
                 self.done='success'
-            elif t>=DEADLINE and self.hold==0:
+            elif t>=DEADLINE and self.hold_start is None:
                 self.done='hold_interrupted' if self.first_arrival is not None else 'navigation_timeout'
         if self.done is not None:
             self.end=t
@@ -54,12 +54,13 @@ def clock_checks():
         return c
     good=(True,True,None); no=(False,False,None)
     assert run([good]*149).done is None
-    assert run([good]*150).done=='success'
+    assert run([good]*150).done is None
+    assert run([good]*151).done=='success'
     assert run([good]*149+[(True,True,'base_contact')]).done=='base_contact'
     assert run([good]*145+[(False,False,'base_contact')]).done=='base_contact'
     assert run([good]*80+[no]+[good]*149).done is None
-    assert run([no]*474+[good]*150).end==624
-    assert run([no]*499+[good]*150).end==649
+    assert run([no]*474+[good]*151).end==625
+    assert run([no]*499+[good]*151).end==650
     assert run([no]*500+[good]*150).done=='navigation_timeout'
     assert run([no]*474+[good]*40+[no]).done=='hold_interrupted'
     return True

@@ -1,0 +1,409 @@
+{
+  "train": {
+    "old": {
+      "configurations": 104000,
+      "born_within_position_threshold": 5199,
+      "cross_aprons": 52000,
+      "same_apron_non_near": 46801
+    },
+    "new": {
+      "classes": {
+        "birth_near": 4632,
+        "same_platform": 16436,
+        "obstacle": 82932
+      },
+      "fraction_born_near": 0.04453846153846154,
+      "distance_quantiles_m": [
+        0.004711533896625042,
+        1.9545802474021912,
+        3.1710036993026733,
+        4.500342965126038,
+        9.779383659362793
+      ],
+      "delta_height_quantiles_m": [
+        -1.3600000143051147,
+        -0.004749999847263098,
+        0.0,
+        0.004019998013973236,
+        1.3600000143051147
+      ],
+      "exact_sources_cartesian_20_by_20": true,
+      "birth_yaw_independent_of_goal": true
+    }
+  },
+  "holdout": {
+    "old": {
+      "configurations": 104000,
+      "born_within_position_threshold": 5200,
+      "cross_aprons": 52000,
+      "same_apron_non_near": 46800
+    },
+    "new": {
+      "classes": {
+        "birth_near": 4638,
+        "same_platform": 16434,
+        "obstacle": 82928
+      },
+      "fraction_born_near": 0.04459615384615385,
+      "distance_quantiles_m": [
+        0.0046225558035075665,
+        1.9581126272678375,
+        3.1747565269470215,
+        4.505496382713318,
+        9.768308639526367
+      ],
+      "delta_height_quantiles_m": [
+        -1.3600000143051147,
+        -0.006744991987943649,
+        0.0,
+        1.9997358322143555e-05,
+        1.3600000143051147
+      ],
+      "exact_sources_cartesian_20_by_20": true,
+      "birth_yaw_independent_of_goal": true
+    }
+  },
+  "section": [
+    {
+      "id": 1790,
+      "terrain": "gap",
+      "route": "gap",
+      "min_m": -1.8,
+      "max_m": 0.19556,
+      "horizontal_m": 2.0966638959574015,
+      "delta_z_m": 0.19556,
+      "delta_xy_section_void_m": 0.5870658908680724,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        -1,
+        1
+      ],
+      "first_intersection_distance": 0.760040662284558
+    },
+    {
+      "id": 9778,
+      "terrain": "pit",
+      "route": "pit",
+      "min_m": -0.38333,
+      "max_m": 0.0,
+      "horizontal_m": 4.216931606343138,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 0.0,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        1,
+        2
+      ],
+      "first_intersection_distance": null
+    },
+    {
+      "id": 17630,
+      "terrain": "radial_beam",
+      "route": "radial_beam",
+      "min_m": -1.8,
+      "max_m": 0.04,
+      "horizontal_m": 1.9531845484801598,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 0.09228796991568755,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        4,
+        5,
+        6,
+        -1,
+        6
+      ],
+      "first_intersection_distance": 1.2934964672309859
+    },
+    {
+      "id": 25907,
+      "terrain": "stairs",
+      "route": "stairs_up",
+      "min_m": 0.0,
+      "max_m": 0.93778,
+      "horizontal_m": 6.6687994576237255,
+      "delta_z_m": 0.93778,
+      "delta_xy_section_void_m": 0.0,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "first_intersection_distance": null
+    },
+    {
+      "id": 29637,
+      "terrain": "stairs",
+      "route": "stairs_down",
+      "min_m": 0.0,
+      "max_m": 0.93778,
+      "horizontal_m": 6.737904222700877,
+      "delta_z_m": -0.93778,
+      "delta_xy_section_void_m": 0.0,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "first_intersection_distance": null
+    },
+    {
+      "id": 33886,
+      "terrain": "parallel_box",
+      "route": "parallel_box",
+      "min_m": -1.8,
+      "max_m": 0.25778,
+      "horizontal_m": 7.4213653447049825,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 2.8961878257711193,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        -1,
+        12,
+        -1,
+        15,
+        -1,
+        17,
+        -1,
+        1
+      ],
+      "first_intersection_distance": 1.2096825511869123
+    },
+    {
+      "id": 41888,
+      "terrain": "balance_beam",
+      "route": "balance_beam",
+      "min_m": -1.8,
+      "max_m": 0.0,
+      "horizontal_m": 5.468268306649006,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 2.691755073947973,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        1,
+        -1,
+        2
+      ],
+      "first_intersection_distance": 1.9398681817837349
+    },
+    {
+      "id": 49719,
+      "terrain": "stepping_stones",
+      "route": "stepping_stones",
+      "min_m": -1.8,
+      "max_m": 0.12239,
+      "horizontal_m": 7.095798808467615,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 4.0162221255926704,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        -1,
+        11,
+        -1,
+        16,
+        -1,
+        1
+      ],
+      "first_intersection_distance": 0.8781051025478673
+    },
+    {
+      "id": 57882,
+      "terrain": "jump_box",
+      "route": "jump_box",
+      "min_m": -1.8,
+      "max_m": 0.35557,
+      "horizontal_m": 1.3451793222412098,
+      "delta_z_m": -0.2046,
+      "delta_xy_section_void_m": 0.1520052634132567,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        11,
+        -1,
+        14
+      ],
+      "first_intersection_distance": 0.5693471481385921
+    },
+    {
+      "id": 65895,
+      "terrain": "maze",
+      "route": "maze",
+      "min_m": 0.0,
+      "max_m": 0.97778,
+      "horizontal_m": 4.2799629534099015,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 0.0,
+      "straight_line_intersects_wall": true,
+      "supports_along_chord": [
+        0,
+        1,
+        -2,
+        2,
+        -2,
+        3
+      ],
+      "first_intersection_distance": 1.8286141718443805
+    },
+    {
+      "id": 73652,
+      "terrain": "contour",
+      "route": "contour",
+      "min_m": -0.27,
+      "max_m": 0.135,
+      "horizontal_m": 5.806494278893541,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 0.0,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "first_intersection_distance": null
+    },
+    {
+      "id": 81956,
+      "terrain": "islands",
+      "route": "level_neighbors",
+      "min_m": -1.8,
+      "max_m": 0.18,
+      "horizontal_m": 1.5568398408986164,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 0.45810012318441784,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        3,
+        -1,
+        0
+      ],
+      "first_intersection_distance": 0.6822850602738186
+    },
+    {
+      "id": 81769,
+      "terrain": "islands",
+      "route": "up_to_center",
+      "min_m": -1.8,
+      "max_m": 0.72,
+      "horizontal_m": 1.8017358543031663,
+      "delta_z_m": 0.54,
+      "delta_xy_section_void_m": 0.45719047302942845,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        3,
+        -1,
+        4
+      ],
+      "first_intersection_distance": 0.6252023414431988
+    },
+    {
+      "id": 81667,
+      "terrain": "islands",
+      "route": "down_from_center",
+      "min_m": -1.8,
+      "max_m": 0.72,
+      "horizontal_m": 1.6597789683636377,
+      "delta_z_m": -0.54,
+      "delta_xy_section_void_m": 0.45394954784745495,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        4,
+        -1,
+        1
+      ],
+      "first_intersection_distance": 0.7186842933014551
+    },
+    {
+      "id": 89689,
+      "terrain": "climb_box",
+      "route": "climb_box",
+      "min_m": -1.8,
+      "max_m": 0.54889,
+      "horizontal_m": 6.0931329465580815,
+      "delta_z_m": 0.54889,
+      "delta_xy_section_void_m": 1.0556352829911875,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        -1,
+        10,
+        -1,
+        13,
+        -1,
+        16
+      ],
+      "first_intersection_distance": 1.8538356989902964
+    },
+    {
+      "id": 97616,
+      "terrain": "inverted_slope",
+      "route": "inverted_slope",
+      "min_m": -0.448,
+      "max_m": 0.0,
+      "horizontal_m": 5.228381915593127,
+      "delta_z_m": 0.0,
+      "delta_xy_section_void_m": 0.0,
+      "straight_line_intersects_wall": false,
+      "supports_along_chord": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "first_intersection_distance": null
+    }
+  ],
+  "source_region_edge_gaps_m": {
+    "81956": 0.44999999999999996,
+    "81769": 0.44999999999999996,
+    "81667": 0.44999999999999996
+  },
+  "foot_offset_m": [
+    [
+      0.507,
+      0.318
+    ],
+    [
+      -0.507,
+      0.318
+    ],
+    [
+      0.507,
+      -0.318
+    ],
+    [
+      -0.507,
+      -0.318
+    ]
+  ],
+  "sample_disk_radius_m": 0.035,
+  "source_geometry_v1": [
+    "d6d21d6bb94dcdb6ef2c968abd3ffed54751ca2b039ee61d53dec64547ea568f",
+    "6447f24738a21925a0bc92ee7dbab4ad6ebe18a781dbc34c2a2bb023f53e7148"
+  ],
+  "source_geometry_v3": [
+    "541a56c08ffab567d419d651191a7315fcd85d823f12fe79cf28c95908da80eb",
+    "75df2201f7db2b53cb807fedc7da9af3881e1731e50dddd7207656cca44c7736"
+  ],
+  "maze_has_floor_path_after_0p30m_erosion": true
+}

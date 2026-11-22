@@ -89,9 +89,11 @@ def verify(args):
         penetration=arrays['ground_z'][0,i]-arrays['feet'][0,i,:,2]
         starts.append(dict(terrain=r['terrain'],id=r['id'],side=named[i][2],
             max_initial_foot_link_under_surface_m=float(np.max(penetration)),
-            two_supported_steps=int((legal.sum(-1)>=2).sum()),
+            two_supported_steps=int((legal[1:].sum(-1)>=2).sum()),
             two_supported_final10=int((legal[-10:].sum(-1)>=2).sum()),
-            max_base_contact=float(arrays['base_force'][:,i].max()),
+            pre_step_base_sensor_cached_N=float(arrays['base_force'][0,i]),
+            first_step_base_N=float(arrays['base_force'][1,i]),final_step_base_N=float(arrays['base_force'][-1,i]),
+            max_base_contact=float(arrays['base_force'][1:,i].max()),
             tilt_peak=float(arrays['tilt_deg'][:,i].max())))
     require('real_birth_goal_support',all(r['two_supported_steps']>=20 and r['two_supported_final10']>=5
             and r['max_initial_foot_link_under_surface_m']<.035 and r['max_base_contact']<=30 for r in starts),starts)
@@ -137,9 +139,9 @@ def verify(args):
             foot_normal_n=raw['foot_force'][1,:,2].tolist(),base_n=float(raw['base_force'][1])))
         if s and not f:stable_run.append((a,s,f))
         else:stable_run.clear()
-        if len(stable_run)>=150:break
+        if len(stable_run)>=151:break
     write(out/'controlled_stand.json',rows)
-    require('true_stand_150',c.done=='success' and len(stable_run)>=150 and c.end-c.hold_start+1==150)
+    require('true_stand_150',c.done=='success' and len(stable_run)>=150 and c.end-c.hold_start==150)
     require('idle_does_not_cross',not any(r['idle_arrived'] for r in rows))
     require('wrong_island_support_is_rejected',not any(r['wrong_arrived'] for r in rows),
             'Same measured root, forces and in-radius target XY. Substitute the other island support ID to isolate the surface check.')
@@ -170,16 +172,16 @@ def verify(args):
     require('real_base_contact_failure',any(r['failure']=='base_contact' and r['training_label']==3 for r in fall),fall)
     # Use one measured sequence and a measured failure as boundary inputs; these are explicitly replay checks.
     actual_fall=next(r['failure'] for r in fall if r['failure']=='base_contact')
-    measured=stable_run[-150:]
+    measured=stable_run[-151:]
     cases={}
     def replay_case(key,prefix,tail,expected):
         ck=Clock()
         for t,triple in enumerate(prefix+tail,1):ck.observe(t,*triple)
         cases[key]=asdict(ck);assert ck.done==expected,(key,asdict(ck))
-    replay_case('149_measured_controls',[],measured[:149],None)
+    replay_case('149_measured_controls',[],measured[:150],None)
     replay_case('150_measured_controls',[],measured,'success')
-    replay_case('fall_after_2p9s',measured[:145],[(False,False,actual_fall)],'base_contact')
-    replay_case('failure_wins_on_success_tick',measured[:149],[(True,True,actual_fall)],'base_contact')
+    replay_case('fall_after_2p9s',measured[:146],[(False,False,actual_fall)],'base_contact')
+    replay_case('failure_wins_on_success_tick',measured[:150],[(True,True,actual_fall)],'base_contact')
     replay_case('arrival_at_9p5_seconds',[(False,False,None)]*474,measured,'success')
     replay_case('interrupted_after_deadline',[(False,False,None)]*474,measured[:55]+[(False,False,None)],'hold_interrupted')
     require('measured_clock_replay',True,cases)
@@ -195,6 +197,11 @@ def verify(args):
     curves=[]; local_clocks=[Clock() for _ in range(3)]
     markers=[Event(anchor) for _ in range(3)]
     for e in markers:e.event_tick=0
+    initial=snapshot(world,ctrls)
+    for j in (0,2):
+        a,s,f,_,_=native_hit(markers[j],0,initial,j,0)
+        assert a and s and not f,('calibrated initial stand',j,a,s,f)
+        local_clocks[j].observe(0,a,s,f)
     for tick in range(1,626):
         if tick==146:
             assert local_clocks[0].hold==145,asdict(local_clocks[0])
@@ -224,8 +231,43 @@ def verify(args):
             and local_clocks[0].best_hold==145,asdict(local_clocks[0]))
     require('physical_149_150',local_clocks[2].end==150 and curves[148][2][3]==149
             and curves[149][2][3]==150,asdict(local_clocks[2]))
-    require('physical_late_arrival',local_clocks[1].first_arrival==475 and local_clocks[1].end==624
+    require('physical_late_arrival',local_clocks[1].first_arrival==475 and local_clocks[1].end==625
             and local_clocks[1].done=='success',asdict(local_clocks[1]))
+    # A real pair straddling a one-cell wall. The standing fixture can contact the wall:
+    # this is a negative unit probe of both terrain topology and physical failures.
+    maze=next(r for r in routes if r['terrain']=='maze')
+    mg,ms=surface('maze',maze['terrain_seed'],maze['level']),region_grid('maze',maze['terrain_seed'],maze['level'])
+    candidates=np.argwhere((ms[1:-1,1:-1]==-2)&(ms[:-2,1:-1]>=0)&(ms[2:,1:-1]>=0)&
+                          (ms[:-2,1:-1]!=ms[2:,1:-1]))
+    i,j=candidates[len(candidates)//2]+1
+    wallxy=(np.array([i,j])+.5)*RESOLUTION-HALF_WIDTH
+    left=wallxy+[-.24,0];right=wallxy+[.14,0]
+    def at(point):
+        return [float(point[0]),float(point[1]),float(surface_at('maze',maze['terrain_seed'],maze['level'],*point))]
+    pair={**maze,'start':at(left),'goal':at(right),'start_support':int(sample_mesh(ms,left,-1)),
+          'goal_support':int(sample_mesh(ms,right,-1))}
+    lane=ctrls[2:]
+    world.place(lane,tensor([maze['id']]),True)
+    offset=world.origins[lane].clone()
+    hits=world.ray_hits(tensor([at(left),at(wallxy),at(right)]).float()+offset)-offset
+    root=world.robot.data.root_state_w[lane,:7].clone()
+    root[:,:3]=offset+tensor([*left,pair['start'][2]+.6]).float()
+    root[:,3:7]=tensor([np.cos(np.pi/4),0.,0.,np.sin(np.pi/4)]).float()
+    world.robot.write_root_pose_to_sim(root,env_ids=lane)
+    world.robot.write_root_velocity_to_sim(torch.zeros((1,6),device=world.device),env_ids=lane)
+    world.targets[lane]=offset+tensor(pair['goal']).float()
+    world.sim.forward()
+    ent=Event(pair);ent.event_tick=0
+    samples=[]
+    for j in range(12):
+        labels,sig=world.step(zero)
+        raw=snapshot(world,lane);a,st,f,regions,_=native_hit(ent,j+1,raw,0,labels[lane[0]])
+        samples.append(dict(near=bool(sig['near'][lane[0]]),arrived=a,stable=st,
+             root=raw['root'][0].tolist(),foot_regions=regions.tolist(),failure=f))
+    require('actual_wall_between_near_points',bool((hits[1,2]-hits[[0,2],2]).min()>.6)
+            and pair['start_support']!=pair['goal_support'] and any(x['near'] for x in samples)
+            and not any(x['arrived'] for x in samples if int(sample_mesh(ms,x['root'][:2],-1))!=pair['goal_support']),
+            dict(terrain='maze',pair=pair,mesh_rays_xyz=cpu(hits).tolist(),samples=samples))
     require('complete',True)
 
 

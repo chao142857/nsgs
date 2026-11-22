@@ -52,7 +52,7 @@ def plot(im,box,name,seed,level,rs,*,points=True,labels=False,crop=5.7):
     im.paste(tile,(l,t))
     if labels and name=='islands':
         for n,(x,y,z,hx,_,_) in enumerate(c.islands(seed,level)):
-            u,v=coord(x,y+.59);txt(d,(u,v),f'I{n}  {z:.2f} m',16,INK,'mm')
+            u,v=coord(x,y+.73);txt(d,(u,v),f'I{n}  {z:.2f} m',16,INK,'mm')
     if points:
         for side in range(2):
             for x,y,z in c.patchset(c.number(name),seed,level,1,side).xyz:
@@ -93,12 +93,16 @@ def details(root,out,routes):
     # Two adjacent maps avoid hiding one pair's labels underneath the other.
     im=Image.new('RGB',(1450,970),PAPER);d=ImageDraw.Draw(im)
     txt(d,(46,28),'Floating islands   /   held-out task coordinates',34)
-    txt(d,(46,79),'Layout 0, variant 4  |  All 20 starts and 20 goals lie on island surfaces. Surface elevations are local choices.',20,MUTED)
+    txt(d,(46,79),'Layout 0, variant 4    |    Green triangles = starts    |    Red dots = goals    |    Heights and coordinates are locally chosen.',20,MUTED)
     for i,row in enumerate(islands[:2]):
         x=46+704*i
         plot(im,(x,130,x+660,624),'islands',0,4,[row],labels=True,crop=3.65)
         metric_block(d,x,647,'Adjacent level islands' if i==0 else 'Low island to central pillar',row)
-        profile(d,(x+47,837,x+635,913),(row['start'],row['goal']),'islands',0,4,'Surface under the straight start-to-goal segment')
+        ids=c.region_grid('islands',0,4)
+        first=np.argwhere(ids==row['start_support']);second=np.argwhere(ids==row['goal_support'])
+        gap=np.linalg.norm(np.maximum(abs(first[:,None]-second)-1,0)*c.RESOLUTION,axis=2).min()
+        profile(d,(x+47,837,x+635,913),(row['start'],row['goal']),'islands',0,4,
+                f'Endpoint cross-section | closest island edges: {gap:.2f} m')
     im.save(out/'islands_topview.png')
     for name in ('stairs','maze'):
         rr=[r for r in routes if r['terrain']==name]

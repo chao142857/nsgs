@@ -88,6 +88,32 @@ def audit(bank_dir,output_dir):
                 visited.add(n);stack.append(n)
     assert goal in visited
     result['maze_has_floor_path_after_0p30m_erosion']=True
+    import csv
+    support_rows=[]
+    for k,name in enumerate(c.TERRAIN_NAMES):
+        for seed in range(2):
+            for level in range(10):
+                reg=c.region_grid(k,seed,level); z=c.surface(k,seed,level)
+                for split in range(2):
+                    start,goal=(c.patchset(k,seed,level,split,i) for i in (0,1))
+                    for region in np.unique(reg[reg>=0]):
+                        mask=reg==region
+                        support_rows.append([name,seed,level,split,int(region),int(mask.sum()),float(z[mask].min()),float(z[mask].max()),
+                                 int((start.region==region).sum()),int((goal.region==region).sum())])
+    with (output_dir/'layout_support_counts.csv').open('w',newline='') as stream:
+        table=csv.writer(stream);table.writerow('terrain layout level split support_id collision_cells min_z_m max_z_m birth_count goal_count'.split())
+        table.writerows(support_rows)
+    with (output_dir/'island_adjacency.csv').open('w',newline='') as stream:
+        table=csv.writer(stream);table.writerow('layout level from_id to_id from_z_m to_z_m nearest_collision_edge_gap_m'.split())
+        for seed in range(2):
+            for level in range(10):
+                spots=c.islands(seed,level)
+                for i,spot in enumerate(spots):
+                    for j,dest in enumerate(spots[i+1:],i+1):
+                        if abs(spot[4]-dest[4])+abs(spot[5]-dest[5])!=1:continue
+                        gap=island_gap(dict(terrain_seed=seed,level=level,start_support=i,goal_support=j))
+                        assert gap>0.
+                        table.writerow([seed,level,i,j,spot[2],dest[2],round(gap,4)])
     (output_dir/'geometry_audit.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
 if __name__=='__main__':

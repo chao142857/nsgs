@@ -1,0 +1,81 @@
+{
+  "baseline": "fd5f6c3380f0d20e4c3a2c15c7fa3311b46227b8",
+  "baseline_main_verified": true,
+  "remote_source_matches": {
+    "catalog.py": true,
+    "course.py": true,
+    "diagnostics.py": true,
+    "native.py": true,
+    "navigation.py": true,
+    "pool.py": true,
+    "ppo_smoke.py": true,
+    "prepare.py": true,
+    "sampler.py": true,
+    "scene.py": true,
+    "table.py": true,
+    "terrain.py": true,
+    "terrain_compat.py": true,
+    "train.py": true,
+    "worker.py": true
+  },
+  "protocol_path_publication_change": "Historical archive path reduced to basename on main",
+  "previous_u250": [
+    {
+      "seed": 73201,
+      "n": 2080,
+      "success": 413,
+      "cross_n": 1030,
+      "cross_win": 0
+    },
+    {
+      "seed": 73202,
+      "n": 2080,
+      "success": 360,
+      "cross_n": 1030,
+      "cross_win": 0
+    },
+    {
+      "seed": 73203,
+      "n": 2080,
+      "success": 366,
+      "cross_n": 1030,
+      "cross_win": 0
+    },
+    {
+      "seed": 73204,
+      "n": 2080,
+      "success": 499,
+      "cross_n": 1030,
+      "cross_win": 0
+    }
+  ],
+  "paused_at": "2026-11-22T18:49:04.394416+08:00",
+  "sealed": [
+    {
+      "file": "retired-sameside-at500/gpu0-s73201-u500.pt",
+      "bytes": 21099702,
+      "sha256": "c5e037ac44c989d9e6c88bf2981668f4f3d0508b686f456ab3c2ff17cfe773b4",
+      "zip_crc_verified": true
+    },
+    {
+      "file": "retired-sameside-at500/gpu1-s73202-u500.pt",
+      "bytes": 21098422,
+      "sha256": "b955f66830f45d6e2e7a164a3708afb9199d1b8d46265805026640b1916cba22",
+      "zip_crc_verified": true
+    },
+    {
+      "file": "retired-sameside-at500/gpu2-s73203-u500.pt",
+      "bytes": 21101046,
+      "sha256": "28603d4917752c4f8af2b389adb19f4133044afcb501790079a210c1d0af6c48",
+      "zip_crc_verified": true
+    },
+    {
+      "file": "retired-sameside-at500/gpu3-s73204-u500.pt",
+      "bytes": 21096438,
+      "sha256": "5fb0c7233383e125b10fb6cf9c7eb96d0cd391bde80953c50b399f11c61c7d7a",
+      "zip_crc_verified": true
+    }
+  ],
+  "old_bank_hash": "984ad3fdd8599ab810a0604703d4aac3f61f00037cd5d87b6a91543c1f684034",
+  "old_holdout_hash": "31ddf7ee7f135d1793e4d319b0e99dafb46f5c87f23dc1a98f7db87aeb3dfd75"
+}
