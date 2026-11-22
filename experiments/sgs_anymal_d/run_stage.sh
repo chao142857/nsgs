@@ -14,7 +14,9 @@ case "$STAGE" in
         mkdir -p "$out_dir"
         "$PYTHON" render/prepare.py "$eval_dir" "$out_dir/prepared"
         swiftc -O render/replay.swift -o "$out_dir/replay"
-        exec "$out_dir/replay" "$eval_dir/visuals" "$out_dir/prepared" "$out_dir"
+        "$out_dir/replay" "$eval_dir/visuals" "$out_dir/prepared" "$out_dir"
+        swiftc -suppress-warnings -O render/audit.swift -o "$out_dir/audit"
+        exec "$out_dir/audit" "$out_dir"
         ;;
     *) exit 2 ;;
 esac

@@ -125,7 +125,7 @@ let writerInput = AVAssetWriterInput(mediaType: .video, outputSettings: [
     AVVideoWidthKey: width, AVVideoHeightKey: height,
     AVVideoCompressionPropertiesKey: [
         AVVideoAverageBitRateKey: 7_200_000, AVVideoExpectedSourceFrameRateKey: fps,
-        AVVideoMaxKeyFrameIntervalKey: fps * 2
+        AVVideoMaxKeyFrameIntervalKey: fps * 2, AVVideoAllowFrameReorderingKey: false
     ]
 ])
 writerInput.expectsMediaDataInRealTime = false
@@ -202,7 +202,9 @@ writer.startSession(atSourceTime: .zero)
             let focus = 0.72*base + 0.28*goal
             center = frame==0 ? focus : 0.80*center + 0.20*focus
             let spread = min(1.6,0.84 + 0.085*simd_distance(base, goal))
-            camera.simdPosition = center + SIMD3<Float>(sideways.x*spread,sideways.y*spread,2.6*spread)
+            let highView = track.terrain == "maze" || track.terrain == "islands"
+            let cameraHeight: Float = highView ? 4.7 : 2.8
+            camera.simdPosition = center + SIMD3<Float>(sideways.x*spread,sideways.y*spread,cameraHeight*spread)
             camera.look(at: SCNVector3(center.x,center.y,center.z),up:SCNVector3(0,0,1),localFront:SCNVector3(0,0,-1))
             let picture=renderer.snapshot(atTime:Double(tick)/50,with:NSSize(width:width,height:height),antialiasingMode:.multisampling2X)
             var rect=CGRect(origin:.zero,size:picture.size)
