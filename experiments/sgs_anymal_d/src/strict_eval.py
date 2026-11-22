@@ -38,7 +38,7 @@ def snapshot(world,indices):
     root=data.root_pos_w[ids]-origin
     variables=dict(body_poses=pose,root=root,feet=feet,
         ground_z=surface[:,:,2]-origin[:,2:3],foot_force=contact.net_forces_w[ids][:,world.foot_sensors],
-        contact_forces=contact.net_forces_w[ids],base_force=contact.net_forces_w_history[ids,:,
+        contact_forces=contact.net_forces_w[ids],nonfoot_force=contact.net_forces_w[ids][:,world.non_feet].norm(dim=-1).amax(dim=-1),base_force=contact.net_forces_w_history[ids,:,
             world.base_sensor].norm(dim=-1).amax(dim=1),
         tilt_deg=torch.rad2deg(torch.acos((-data.projected_gravity_b[ids,2]).clamp(-1,1))),
         linear_speed=data.root_lin_vel_w[ids,:2].norm(dim=-1),angular_speed=data.root_ang_vel_w[ids].norm(dim=-1),
@@ -48,7 +48,7 @@ def snapshot(world,indices):
 
 def native_hit(event,t,raw,i,label):
     args=[raw[k][i] for k in ('root','feet','foot_force','tilt_deg','linear_speed','angular_speed','base_force')]
-    return event.observe(t,*args,int(label),ray_heights=raw['ground_z'][i])
+    return event.observe(t,*args,int(label),ray_heights=raw['ground_z'][i],nonfoot_force=raw['nonfoot_force'][i])
 
 
 def replay(args):

@@ -85,6 +85,10 @@ class Event:
     seen: set = field(default_factory=set)
     start_loaded: bool = False
     airborne: bool = False
+    flight_from: set = field(default_factory=set)
+    previous_support: set = field(default_factory=set)
+    air_to_land: list = field(default_factory=list)
+    start_tick: int | None = None
     first_transfer: dict | None = None
     event_tick: int | None = None
     rollover: int = 0
@@ -99,7 +103,7 @@ class Event:
     maze_passages: set = field(default_factory=set)
     prev_root: np.ndarray | None = None
 
-    def observe(self,t,root,feet,foot_forces,tilt,linear,angular,base_force,labels,ray_heights=None):
+    def observe(self,t,root,feet,foot_forces,tilt,linear,angular,base_force,labels,ray_heights=None,nonfoot_force=0.):
         name=self.route['terrain']; seed=self.route['terrain_seed']; level=self.route['level']
         regions,ground=rasters(name,seed,level)
         start=np.asarray(self.route['start']); goal=np.asarray(self.route['goal'])
@@ -115,10 +119,19 @@ class Event:
         length=max(float(np.linalg.norm(delta)),1e-8)
         d=float(np.dot(root[:2]-start[:2],delta)/length)
         self.furthest=max(self.furthest,d)
-        if a in support: self.start_loaded=True
-        if self.start_loaded and not np.any(fz>LOAD_N): self.airborne=True
+        if a in support:
+            self.start_loaded=True
+            if self.start_tick is None: self.start_tick=t
+        if self.start_loaded and not np.any(fz>LOAD_N):
+            self.airborne=True
+            self.flight_from.update(self.previous_support)
+        if self.flight_from and support:
+            if support-self.flight_from:
+                self.air_to_land.append([t,sorted(self.flight_from),sorted(support)])
+            self.flight_from.clear()
+        self.previous_support=support.copy()
         if self.start_loaded:
-            if self.first_transfer is None and (support-{a}):
+            if self.first_transfer is None and t>self.start_tick and (support-{a}):
                 self.first_transfer=dict(tick=t,regions=sorted(support-{a}))
             for key in sorted(support-self.seen):
                 self.visits.append([t,key])
@@ -155,7 +168,7 @@ class Event:
         dest=b in support
         crossed=self.start_loaded and dest and a!=b
         if name in ('islands','jump_box'):
-            crossed=crossed and self.airborne
+            crossed=crossed and any(b in landed and b not in launch for _,launch,landed in self.air_to_land)
         elif name=='stepping_stones':
             crossed=crossed and len([i for i in self.seen if i>=10])>=2
         elif name=='parallel_box':
@@ -176,7 +189,9 @@ class Event:
         correct=root_region==b and np.count_nonzero(foot_region==b)>=2
         arrived=self.event_tick is not None and dist<=.40 and err<=.36 and correct
         stable=arrived and tilt<30. and linear<.45 and angular<1.5
-        self.rollover=self.rollover+1 if tilt>=ROLLOVER_DEG else 0
+        ground_under_root=float(sample_mesh(ground,root[:2],-99.))
+        fallen=(tilt>=ROLLOVER_DEG and nonfoot_force>LOAD_N and root[2]-ground_under_root<.45)
+        self.rollover=self.rollover+1 if fallen else 0
         failure=None
         if labels==2 or root[2]<-1.05: failure='drop'
         elif labels==3 or base_force>30: failure='base_contact'
@@ -185,7 +200,7 @@ class Event:
 
     def row(self):
         return dict(event_tick=self.event_tick,first_support_transfer=self.first_transfer,
-                    first_region_visits=self.visits,max_progress_m=self.furthest,airborne=self.airborne,
+                    first_region_visits=self.visits,max_progress_m=self.furthest,airborne=self.airborne,flight_landings=self.air_to_land,
                     min_loaded_z_m=self.support_lo if np.isfinite(self.support_lo) else None,
                     max_loaded_z_m=self.support_hi if np.isfinite(self.support_hi) else None,
                     maze_passages=sorted(self.maze_passages),stair_transitions=self.staircase)
