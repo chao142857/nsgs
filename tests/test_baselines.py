@@ -143,6 +143,68 @@ class AllBaselinesContractTests(unittest.TestCase):
         self.assertLessEqual(diag["occupied_cells"], 512)
         self.assertEqual(diag["total_grid_cells"], 8**16)
 
+    def test_plr_and_neural_plr_reject_bad_scores_atomically(self) -> None:
+        for method in ("plr", "neural_plr"):
+            with self.subTest(method=method):
+                sampler = build_sampler(method, self.pool, seed=17, device="cpu", **self._small_kwargs(method))
+                ids = np.array([0, 1, 2], dtype=np.int64)
+                succ = np.array([True, False, True], dtype=np.bool_)
+                for bad_scores in (
+                    np.array([0.5], dtype=np.float32),
+                    np.array([0.1, float("nan"), 0.3], dtype=np.float32),
+                    np.array([0.1, float("inf"), 0.3], dtype=np.float32),
+                    np.ones((3, 1), dtype=np.float32),
+                ):
+                    with self.assertRaises(ValueError):
+                        sampler.record(ids, succ, update=1, scores=bad_scores)
+                    self.assertEqual(sampler.total_completed, 0)
+                    self.assertEqual(int(sampler.completed_counts.sum()), 0)
+
+    def test_adaptive_target_checkpoint_mid_update_preserves_pending_feedback(self) -> None:
+        kw = dict(
+            num_members=3,
+            hidden_dims=(32, 32),
+            history_limit=512,
+            optimizer_steps=2,
+            batch_size=64,
+            cold_updates=1,
+            adaptive_target=True,
+        )
+        s1 = build_sampler("nsgs_v2", self.pool, seed=31, device="cpu", **kw)
+        s1.target_tracker.min_bin_count = 4
+        # Prime tracker with update 1 and 2.
+        for u in (1, 2):
+            ids = s1.sample(48)
+            s1.record(ids, ids < 128, update=u)
+            s1.step_update(u)
+        # Record feedback for update 3, then checkpoint BEFORE step_update(3).
+        ids3 = s1.sample(64)
+        s1.record(ids3, np.ones(64, dtype=np.bool_), update=3)
+        ckpt = s1.state_dict()
+
+        s2 = build_sampler("nsgs_v2", self.pool, seed=999, device="cpu", **kw)
+        s2.target_tracker.min_bin_count = 4
+        s2.load_state_dict(ckpt)
+
+        d1 = s1.step_update(3)
+        d2 = s2.step_update(3)
+        self.assertAlmostEqual(d1["active_target"], d2["active_target"], places=12)
+        np.testing.assert_allclose(s1.probabilities(), s2.probabilities(), atol=1e-12)
+        np.testing.assert_array_equal(s1.sample(32), s2.sample(32))
+
+    def test_neural_init_does_not_touch_cuda_rng(self) -> None:
+        orig_cuda_seed_all = torch.cuda.manual_seed_all
+
+        def _forbid_cuda_seed_all(_seed: int) -> None:
+            raise AssertionError("Sampler init must not call torch.cuda.manual_seed_all")
+
+        torch.cuda.manual_seed_all = _forbid_cuda_seed_all  # type: ignore[assignment]
+        try:
+            for method in ("nsgs", "nsgs_v2", "neural_plr"):
+                build_sampler(method, self.pool, seed=55, device="cpu", **self._small_kwargs(method))
+        finally:
+            torch.cuda.manual_seed_all = orig_cuda_seed_all  # type: ignore[assignment]
+
 
 class SyntheticBenchmarkSanityTests(unittest.TestCase):
     def test_high_dim_benchmark_runs_all_methods(self) -> None:

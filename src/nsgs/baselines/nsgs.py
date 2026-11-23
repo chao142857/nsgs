@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 from dataclasses import replace
 import math
 from time import monotonic
@@ -37,7 +38,9 @@ class NSGSSampler(TaskSampler):
     """Ensemble Neural Success-Guided Sampler supporting both NSGS (v1) and NSGS v2.
 
     - NSGS v1 (`beta_optimism=0.0, history_limit=1_000_000, tau=100.0, kernel='sharp'`):
-      Exact ensemble-mean neural success estimator from the 3D/5D study.
+      v1-compatible ensemble-mean configuration matching the 3D/5D architecture
+      (5 MLPs, 1M replay, tau=100, sharp kernel). Uses isolated per-sampler NumPy
+      batch RNG and clamps mini-batch size to current buffer size during early updates.
     - NSGS v2 (`beta_optimism=1.0, history_limit=200_000, tau=30.0, kernel='sharp_safe'`):
       Addresses both root causes diagnosed in the million-pool audit without adding
       any spatial grids:
@@ -101,9 +104,10 @@ class NSGSSampler(TaskSampler):
         self._features = torch.as_tensor(pool.features, dtype=torch.float32, device=self.device)
         self.models: list[nn.Module] = []
         self.optimizers: list[torch.optim.Optimizer] = []
-        with torch.random.fork_rng(devices=[] if self.device.type == "cpu" else [self.device]):
+        # Seed CPU default_generator only inside fork_rng(devices=[]) so CUDA RNGs are never touched.
+        with torch.random.fork_rng(devices=[]):
             for m in range(self.num_members):
-                torch.manual_seed(self.seed + 7919 * (m + 1))
+                torch.default_generator.manual_seed(self.seed + 7919 * (m + 1))
                 net = _build_mlp(pool.feature_dim, self.hidden_dims).to(self.device)
                 self.models.append(net)
                 self.optimizers.append(torch.optim.Adam(net.parameters(), lr=self.lr, eps=self.adam_eps))
@@ -259,7 +263,7 @@ class NSGSSampler(TaskSampler):
         state.update(
             {
                 "models": [{k: v.detach().cpu().clone() for k, v in m.state_dict().items()} for m in self.models],
-                "optimizers": [o.state_dict() for o in self.optimizers],
+                "optimizers": [copy.deepcopy(o.state_dict()) for o in self.optimizers],
                 "buf_ids": self._buf_ids[: self._buf_size].copy(),
                 "buf_y": self._buf_y[: self._buf_size].copy(),
                 "buf_u": self._buf_u[: self._buf_size].copy(),
@@ -270,6 +274,8 @@ class NSGSSampler(TaskSampler):
                 "effective_rates": self.effective_rates.copy(),
                 "last_bce": self._last_bce,
                 "active_target": self._active_target,
+                "pending_ids": [a.copy() for a in self._pending_ids],
+                "pending_y": [a.copy() for a in self._pending_y],
                 "target_tracker": None if self.target_tracker is None else self.target_tracker.state_dict(),
             }
         )
@@ -278,9 +284,9 @@ class NSGSSampler(TaskSampler):
     def load_state_dict(self, state: dict[str, Any]) -> None:
         self._load_base_state_dict(state)
         for model, sd in zip(self.models, state["models"]):
-            model.load_state_dict(sd)
+            model.load_state_dict({k: v.clone() for k, v in sd.items()})
         for opt, sd in zip(self.optimizers, state["optimizers"]):
-            opt.load_state_dict(sd)
+            opt.load_state_dict(copy.deepcopy(sd))
         size = int(state["buf_size"])
         self._buf_ids.fill(0)
         self._buf_y.fill(0.0)
@@ -296,5 +302,7 @@ class NSGSSampler(TaskSampler):
         self.effective_rates = np.asarray(state["effective_rates"], dtype=np.float64).copy()
         self._last_bce = float(state["last_bce"])
         self._active_target = float(state["active_target"])
+        self._pending_ids = [np.asarray(a, dtype=np.int64).copy() for a in state.get("pending_ids", [])]
+        self._pending_y = [np.asarray(a, dtype=np.float32).copy() for a in state.get("pending_y", [])]
         if self.target_tracker is not None and state.get("target_tracker") is not None:
             self.target_tracker.load_state_dict(state["target_tracker"])

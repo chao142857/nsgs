@@ -13,6 +13,7 @@ success-rate frontier).
 
 from __future__ import annotations
 
+import copy
 import math
 from time import monotonic
 from typing import Any
@@ -152,14 +153,20 @@ class PLRSampler(TaskSampler):
         update: int,
         scores: np.ndarray | None = None,
     ) -> None:
+        ids_check = np.asarray(task_ids, dtype=np.int64).reshape(-1)
+        sc: np.ndarray | None = None
+        if scores is not None:
+            sc_raw = np.asarray(scores, dtype=np.float64)
+            if sc_raw.ndim != 1 or sc_raw.shape != ids_check.shape or not np.all(np.isfinite(sc_raw)):
+                raise ValueError(
+                    f"PLR scores must be a finite 1D array matching task_ids shape {ids_check.shape}, "
+                    f"got shape {sc_raw.shape}"
+                )
+            sc = np.maximum(sc_raw, 0.0)
         ids, succ = self._record_base_counts(task_ids, successes)
         if ids.size == 0:
             return
-        if scores is not None:
-            sc = np.asarray(scores, dtype=np.float64).reshape(-1)
-            if sc.shape != ids.shape or not np.all(np.isfinite(sc)):
-                raise ValueError("PLR scores must be finite and match task_ids shape")
-            sc = np.maximum(sc, 0.0)
+        if sc is not None:
             for task, val in zip(ids.tolist(), sc.tolist()):
                 if not self._seen[task]:
                     self._scores[task] = val
@@ -282,9 +289,10 @@ class NeuralPLRSampler(TaskSampler):
         self._features = torch.as_tensor(pool.features, dtype=torch.float32, device=self.device)
         self.models: list[nn.Module] = []
         self.optimizers: list[torch.optim.Optimizer] = []
-        with torch.random.fork_rng(devices=[] if self.device.type == "cpu" else [self.device]):
+        # Seed CPU default_generator only inside fork_rng(devices=[]) so CUDA RNGs are never touched.
+        with torch.random.fork_rng(devices=[]):
             for m in range(self.num_members):
-                torch.manual_seed(self.seed + 1009 * (m + 1))
+                torch.default_generator.manual_seed(self.seed + 1009 * (m + 1))
                 net = _build_score_mlp(pool.feature_dim, self.hidden_dims).to(self.device)
                 self.models.append(net)
                 self.optimizers.append(torch.optim.Adam(net.parameters(), lr=self.lr))
@@ -314,14 +322,24 @@ class NeuralPLRSampler(TaskSampler):
         update: int,
         scores: np.ndarray | None = None,
     ) -> None:
+        ids_check = np.asarray(task_ids, dtype=np.int64).reshape(-1)
+        sc_validated: np.ndarray | None = None
+        if scores is not None:
+            sc_raw = np.asarray(scores, dtype=np.float64)
+            if sc_raw.ndim != 1 or sc_raw.shape != ids_check.shape or not np.all(np.isfinite(sc_raw)):
+                raise ValueError(
+                    f"NeuralPLR scores must be a finite 1D array matching task_ids shape {ids_check.shape}, "
+                    f"got shape {sc_raw.shape}"
+                )
+            sc_validated = np.maximum(sc_raw, 0.0).astype(np.float32)
         ids, succ = self._record_base_counts(task_ids, successes)
         m = ids.size
         if m == 0:
             return
-        if scores is not None:
-            sc = np.maximum(np.asarray(scores, dtype=np.float32).reshape(-1), 0.0)
+        if sc_validated is not None:
+            sc = sc_validated
         else:
-            # Binary fallback: surprise against running pool mean.
+            # Binary fallback: surprise against running batch mean.
             mean_y = float(succ.mean())
             sc = np.abs(succ.astype(np.float32) - mean_y)
         u = int(update)
@@ -417,7 +435,7 @@ class NeuralPLRSampler(TaskSampler):
         state.update(
             {
                 "models": [{k: v.detach().cpu().clone() for k, v in m.state_dict().items()} for m in self.models],
-                "optimizers": [o.state_dict() for o in self.optimizers],
+                "optimizers": [copy.deepcopy(o.state_dict()) for o in self.optimizers],
                 "buf_ids": self._buf_ids[: self._buf_size].copy(),
                 "buf_s": self._buf_s[: self._buf_size].copy(),
                 "buf_u": self._buf_u[: self._buf_size].copy(),
@@ -434,9 +452,9 @@ class NeuralPLRSampler(TaskSampler):
     def load_state_dict(self, state: dict[str, Any]) -> None:
         self._load_base_state_dict(state)
         for model, sd in zip(self.models, state["models"]):
-            model.load_state_dict(sd)
+            model.load_state_dict({k: v.clone() for k, v in sd.items()})
         for opt, sd in zip(self.optimizers, state["optimizers"]):
-            opt.load_state_dict(sd)
+            opt.load_state_dict(copy.deepcopy(sd))
         size = int(state["buf_size"])
         self._buf_ids.fill(0)
         self._buf_s.fill(0.0)
