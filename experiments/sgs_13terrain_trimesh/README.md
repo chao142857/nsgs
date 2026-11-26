@@ -64,10 +64,10 @@ python experiments/sgs_13terrain_trimesh/src/trimesh_train.py \
   --recipe recipe-13t-v6-agile \
   --out runs/s73205/nsgs
 
-# 3. Run deterministic 2,080-route heldout evaluation
+# 3. Run deterministic 2,080-route heldout evaluation (recipe is loaded automatically from checkpoint)
 python experiments/sgs_13terrain_trimesh/src/eval_haa_full.py \
   --catalog experiments/sgs_13terrain_trimesh/catalog_v4 \
   --checkpoint runs/s73205/nsgs/checkpoint-5000.pt \
-  --recipe recipe-13t-v6-agile \
+  --panel-mode catalog_holdout \
   --out runs/s73205/nsgs/eval_haa_full-u5000
 ```
