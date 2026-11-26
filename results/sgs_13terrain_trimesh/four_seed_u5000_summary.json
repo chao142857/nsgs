@@ -1,0 +1,1398 @@
+{
+  "benchmark": "ANYmal-D 13-Terrain 3D Trimesh Goal Navigation (v6 / catalog_v4 / recipe-13t-v6-agile)",
+  "train_pool_size": 104000,
+  "holdout_routes": 2080,
+  "updates": 5000,
+  "eval_checkpoints": [
+    1000,
+    2000,
+    3000,
+    4000,
+    5000
+  ],
+  "seeds": [
+    "s10001",
+    "s20261",
+    "s30307",
+    "s73205"
+  ],
+  "terrains": [
+    "gap",
+    "pit",
+    "radial_beam",
+    "stairs",
+    "parallel_box",
+    "balance_beam",
+    "stepping_stones",
+    "jump_box",
+    "maze",
+    "contour",
+    "islands",
+    "climb_box",
+    "inverted_slope"
+  ],
+  "per_seed": {
+    "s10001": {
+      "uniform": {
+        "train_hours": 3.3812,
+        "holdout_successes": {
+          "1000": 681,
+          "2000": 960,
+          "3000": 1118,
+          "4000": 1222,
+          "5000": 1274
+        },
+        "holdout_clean_successes": {
+          "1000": 667,
+          "2000": 943,
+          "3000": 1091,
+          "4000": 1189,
+          "5000": 1241
+        },
+        "u5000_rate_pct": 61.25,
+        "u5000_clean_rate_pct": 59.66,
+        "u5000_per_terrain": {
+          "gap": 143,
+          "pit": 130,
+          "radial_beam": 110,
+          "stairs": 155,
+          "parallel_box": 74,
+          "balance_beam": 112,
+          "stepping_stones": 22,
+          "jump_box": 44,
+          "maze": 28,
+          "contour": 125,
+          "islands": 36,
+          "climb_box": 135,
+          "inverted_slope": 160
+        }
+      },
+      "plr": {
+        "train_hours": 3.401,
+        "holdout_successes": {
+          "1000": 668,
+          "2000": 853,
+          "3000": 907,
+          "4000": 1006,
+          "5000": 1048
+        },
+        "holdout_clean_successes": {
+          "1000": 659,
+          "2000": 833,
+          "3000": 877,
+          "4000": 980,
+          "5000": 1022
+        },
+        "u5000_rate_pct": 50.38,
+        "u5000_clean_rate_pct": 49.13,
+        "u5000_per_terrain": {
+          "gap": 146,
+          "pit": 118,
+          "radial_beam": 20,
+          "stairs": 142,
+          "parallel_box": 71,
+          "balance_beam": 24,
+          "stepping_stones": 27,
+          "jump_box": 59,
+          "maze": 21,
+          "contour": 121,
+          "islands": 15,
+          "climb_box": 124,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_eps1e4": {
+        "train_hours": 3.4124,
+        "holdout_successes": {
+          "1000": 760,
+          "2000": 970,
+          "3000": 1042,
+          "4000": 1083,
+          "5000": 1084
+        },
+        "holdout_clean_successes": {
+          "1000": 744,
+          "2000": 952,
+          "3000": 1022,
+          "4000": 1061,
+          "5000": 1059
+        },
+        "u5000_rate_pct": 52.12,
+        "u5000_clean_rate_pct": 50.91,
+        "u5000_per_terrain": {
+          "gap": 153,
+          "pit": 141,
+          "radial_beam": 1,
+          "stairs": 149,
+          "parallel_box": 73,
+          "balance_beam": 5,
+          "stepping_stones": 19,
+          "jump_box": 37,
+          "maze": 64,
+          "contour": 142,
+          "islands": 2,
+          "climb_box": 138,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_sharp": {
+        "train_hours": 3.4097,
+        "holdout_successes": {
+          "1000": 801,
+          "2000": 1093,
+          "3000": 1236,
+          "4000": 1302,
+          "5000": 1382
+        },
+        "holdout_clean_successes": {
+          "1000": 772,
+          "2000": 1067,
+          "3000": 1195,
+          "4000": 1261,
+          "5000": 1341
+        },
+        "u5000_rate_pct": 66.44,
+        "u5000_clean_rate_pct": 64.47,
+        "u5000_per_terrain": {
+          "gap": 160,
+          "pit": 143,
+          "radial_beam": 96,
+          "stairs": 158,
+          "parallel_box": 90,
+          "balance_beam": 78,
+          "stepping_stones": 23,
+          "jump_box": 46,
+          "maze": 81,
+          "contour": 148,
+          "islands": 49,
+          "climb_box": 150,
+          "inverted_slope": 160
+        }
+      },
+      "grid_sgs": {
+        "train_hours": 3.4771,
+        "holdout_successes": {
+          "1000": 815,
+          "2000": 1040,
+          "3000": 1100,
+          "4000": 1120,
+          "5000": 1156
+        },
+        "holdout_clean_successes": {
+          "1000": 802,
+          "2000": 1024,
+          "3000": 1081,
+          "4000": 1100,
+          "5000": 1126
+        },
+        "u5000_rate_pct": 55.58,
+        "u5000_clean_rate_pct": 54.13,
+        "u5000_per_terrain": {
+          "gap": 156,
+          "pit": 147,
+          "radial_beam": 17,
+          "stairs": 153,
+          "parallel_box": 82,
+          "balance_beam": 16,
+          "stepping_stones": 24,
+          "jump_box": 44,
+          "maze": 64,
+          "contour": 139,
+          "islands": 13,
+          "climb_box": 141,
+          "inverted_slope": 160
+        }
+      },
+      "knn_sgs": {
+        "train_hours": 3.4693,
+        "holdout_successes": {
+          "1000": 907,
+          "2000": 1018,
+          "3000": 1061,
+          "4000": 1138,
+          "5000": 1191
+        },
+        "holdout_clean_successes": {
+          "1000": 889,
+          "2000": 998,
+          "3000": 1040,
+          "4000": 1104,
+          "5000": 1157
+        },
+        "u5000_rate_pct": 57.26,
+        "u5000_clean_rate_pct": 55.62,
+        "u5000_per_terrain": {
+          "gap": 149,
+          "pit": 142,
+          "radial_beam": 37,
+          "stairs": 157,
+          "parallel_box": 78,
+          "balance_beam": 36,
+          "stepping_stones": 26,
+          "jump_box": 41,
+          "maze": 60,
+          "contour": 135,
+          "islands": 26,
+          "climb_box": 144,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs": {
+        "train_hours": 3.2901,
+        "holdout_successes": {
+          "1000": 929,
+          "2000": 1307,
+          "3000": 1433,
+          "4000": 1522,
+          "5000": 1526
+        },
+        "holdout_clean_successes": {
+          "1000": 914,
+          "2000": 1244,
+          "3000": 1353,
+          "4000": 1460,
+          "5000": 1483
+        },
+        "u5000_rate_pct": 73.37,
+        "u5000_clean_rate_pct": 71.3,
+        "u5000_per_terrain": {
+          "gap": 155,
+          "pit": 141,
+          "radial_beam": 147,
+          "stairs": 154,
+          "parallel_box": 109,
+          "balance_beam": 140,
+          "stepping_stones": 36,
+          "jump_box": 77,
+          "maze": 62,
+          "contour": 139,
+          "islands": 63,
+          "climb_box": 143,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs_v2": {
+        "train_hours": 3.4789,
+        "holdout_successes": {
+          "1000": 966,
+          "2000": 1301,
+          "3000": 1412,
+          "4000": 1453,
+          "5000": 1532
+        },
+        "holdout_clean_successes": {
+          "1000": 964,
+          "2000": 1282,
+          "3000": 1398,
+          "4000": 1433,
+          "5000": 1510
+        },
+        "u5000_rate_pct": 73.65,
+        "u5000_clean_rate_pct": 72.6,
+        "u5000_per_terrain": {
+          "gap": 151,
+          "pit": 147,
+          "radial_beam": 147,
+          "stairs": 156,
+          "parallel_box": 104,
+          "balance_beam": 141,
+          "stepping_stones": 46,
+          "jump_box": 80,
+          "maze": 50,
+          "contour": 134,
+          "islands": 70,
+          "climb_box": 146,
+          "inverted_slope": 160
+        }
+      }
+    },
+    "s20261": {
+      "uniform": {
+        "train_hours": 3.3723,
+        "holdout_successes": {
+          "1000": 743,
+          "2000": 964,
+          "3000": 1063,
+          "4000": 1130,
+          "5000": 1222
+        },
+        "holdout_clean_successes": {
+          "1000": 733,
+          "2000": 946,
+          "3000": 1041,
+          "4000": 1114,
+          "5000": 1199
+        },
+        "u5000_rate_pct": 58.75,
+        "u5000_clean_rate_pct": 57.64,
+        "u5000_per_terrain": {
+          "gap": 132,
+          "pit": 127,
+          "radial_beam": 81,
+          "stairs": 154,
+          "parallel_box": 79,
+          "balance_beam": 73,
+          "stepping_stones": 21,
+          "jump_box": 45,
+          "maze": 47,
+          "contour": 140,
+          "islands": 28,
+          "climb_box": 135,
+          "inverted_slope": 160
+        }
+      },
+      "plr": {
+        "train_hours": 3.3907,
+        "holdout_successes": {
+          "1000": 760,
+          "2000": 1022,
+          "3000": 1109,
+          "4000": 1169,
+          "5000": 1248
+        },
+        "holdout_clean_successes": {
+          "1000": 737,
+          "2000": 994,
+          "3000": 1075,
+          "4000": 1138,
+          "5000": 1222
+        },
+        "u5000_rate_pct": 60.0,
+        "u5000_clean_rate_pct": 58.75,
+        "u5000_per_terrain": {
+          "gap": 129,
+          "pit": 115,
+          "radial_beam": 97,
+          "stairs": 138,
+          "parallel_box": 81,
+          "balance_beam": 78,
+          "stepping_stones": 41,
+          "jump_box": 69,
+          "maze": 36,
+          "contour": 131,
+          "islands": 42,
+          "climb_box": 131,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_eps1e4": {
+        "train_hours": 3.4302,
+        "holdout_successes": {
+          "1000": 848,
+          "2000": 1124,
+          "3000": 1252,
+          "4000": 1323,
+          "5000": 1388
+        },
+        "holdout_clean_successes": {
+          "1000": 833,
+          "2000": 1060,
+          "3000": 1156,
+          "4000": 1248,
+          "5000": 1242
+        },
+        "u5000_rate_pct": 66.73,
+        "u5000_clean_rate_pct": 59.71,
+        "u5000_per_terrain": {
+          "gap": 133,
+          "pit": 141,
+          "radial_beam": 127,
+          "stairs": 158,
+          "parallel_box": 86,
+          "balance_beam": 129,
+          "stepping_stones": 25,
+          "jump_box": 54,
+          "maze": 64,
+          "contour": 119,
+          "islands": 54,
+          "climb_box": 138,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_sharp": {
+        "train_hours": 3.4473,
+        "holdout_successes": {
+          "1000": 834,
+          "2000": 1066,
+          "3000": 1208,
+          "4000": 1308,
+          "5000": 1363
+        },
+        "holdout_clean_successes": {
+          "1000": 814,
+          "2000": 1053,
+          "3000": 1191,
+          "4000": 1294,
+          "5000": 1347
+        },
+        "u5000_rate_pct": 65.53,
+        "u5000_clean_rate_pct": 64.76,
+        "u5000_per_terrain": {
+          "gap": 158,
+          "pit": 140,
+          "radial_beam": 79,
+          "stairs": 159,
+          "parallel_box": 92,
+          "balance_beam": 72,
+          "stepping_stones": 28,
+          "jump_box": 50,
+          "maze": 82,
+          "contour": 149,
+          "islands": 48,
+          "climb_box": 146,
+          "inverted_slope": 160
+        }
+      },
+      "grid_sgs": {
+        "train_hours": 3.4767,
+        "holdout_successes": {
+          "1000": 813,
+          "2000": 925,
+          "3000": 1013,
+          "4000": 1048,
+          "5000": 1098
+        },
+        "holdout_clean_successes": {
+          "1000": 788,
+          "2000": 912,
+          "3000": 996,
+          "4000": 1022,
+          "5000": 1073
+        },
+        "u5000_rate_pct": 52.79,
+        "u5000_clean_rate_pct": 51.59,
+        "u5000_per_terrain": {
+          "gap": 118,
+          "pit": 144,
+          "radial_beam": 11,
+          "stairs": 148,
+          "parallel_box": 76,
+          "balance_beam": 15,
+          "stepping_stones": 21,
+          "jump_box": 45,
+          "maze": 68,
+          "contour": 141,
+          "islands": 9,
+          "climb_box": 142,
+          "inverted_slope": 160
+        }
+      },
+      "knn_sgs": {
+        "train_hours": 3.4789,
+        "holdout_successes": {
+          "1000": 803,
+          "2000": 974,
+          "3000": 1118,
+          "4000": 1195,
+          "5000": 1278
+        },
+        "holdout_clean_successes": {
+          "1000": 777,
+          "2000": 955,
+          "3000": 1093,
+          "4000": 1166,
+          "5000": 1234
+        },
+        "u5000_rate_pct": 61.44,
+        "u5000_clean_rate_pct": 59.33,
+        "u5000_per_terrain": {
+          "gap": 108,
+          "pit": 136,
+          "radial_beam": 107,
+          "stairs": 160,
+          "parallel_box": 76,
+          "balance_beam": 96,
+          "stepping_stones": 22,
+          "jump_box": 55,
+          "maze": 50,
+          "contour": 133,
+          "islands": 37,
+          "climb_box": 138,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs": {
+        "train_hours": 3.2155,
+        "holdout_successes": {
+          "1000": 1016,
+          "2000": 1363,
+          "3000": 1441,
+          "4000": 1511,
+          "5000": 1589
+        },
+        "holdout_clean_successes": {
+          "1000": 997,
+          "2000": 1339,
+          "3000": 1412,
+          "4000": 1476,
+          "5000": 1540
+        },
+        "u5000_rate_pct": 76.39,
+        "u5000_clean_rate_pct": 74.04,
+        "u5000_per_terrain": {
+          "gap": 158,
+          "pit": 148,
+          "radial_beam": 142,
+          "stairs": 157,
+          "parallel_box": 109,
+          "balance_beam": 148,
+          "stepping_stones": 46,
+          "jump_box": 95,
+          "maze": 55,
+          "contour": 146,
+          "islands": 76,
+          "climb_box": 149,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs_v2": {
+        "train_hours": 3.4423,
+        "holdout_successes": {
+          "1000": 1104,
+          "2000": 1401,
+          "3000": 1504,
+          "4000": 1545,
+          "5000": 1585
+        },
+        "holdout_clean_successes": {
+          "1000": 1090,
+          "2000": 1382,
+          "3000": 1490,
+          "4000": 1515,
+          "5000": 1557
+        },
+        "u5000_rate_pct": 76.2,
+        "u5000_clean_rate_pct": 74.86,
+        "u5000_per_terrain": {
+          "gap": 153,
+          "pit": 143,
+          "radial_beam": 147,
+          "stairs": 160,
+          "parallel_box": 108,
+          "balance_beam": 144,
+          "stepping_stones": 39,
+          "jump_box": 89,
+          "maze": 59,
+          "contour": 149,
+          "islands": 89,
+          "climb_box": 145,
+          "inverted_slope": 160
+        }
+      }
+    },
+    "s30307": {
+      "uniform": {
+        "train_hours": 3.374,
+        "holdout_successes": {
+          "1000": 786,
+          "2000": 938,
+          "3000": 1006,
+          "4000": 1041,
+          "5000": 1084
+        },
+        "holdout_clean_successes": {
+          "1000": 768,
+          "2000": 924,
+          "3000": 988,
+          "4000": 1023,
+          "5000": 1067
+        },
+        "u5000_rate_pct": 52.12,
+        "u5000_clean_rate_pct": 51.3,
+        "u5000_per_terrain": {
+          "gap": 130,
+          "pit": 140,
+          "radial_beam": 21,
+          "stairs": 153,
+          "parallel_box": 71,
+          "balance_beam": 18,
+          "stepping_stones": 15,
+          "jump_box": 41,
+          "maze": 47,
+          "contour": 140,
+          "islands": 14,
+          "climb_box": 134,
+          "inverted_slope": 160
+        }
+      },
+      "plr": {
+        "train_hours": 3.3674,
+        "holdout_successes": {
+          "1000": 878,
+          "2000": 1053,
+          "3000": 1121,
+          "4000": 1221,
+          "5000": 1249
+        },
+        "holdout_clean_successes": {
+          "1000": 846,
+          "2000": 1028,
+          "3000": 1096,
+          "4000": 1182,
+          "5000": 1204
+        },
+        "u5000_rate_pct": 60.05,
+        "u5000_clean_rate_pct": 57.88,
+        "u5000_per_terrain": {
+          "gap": 152,
+          "pit": 124,
+          "radial_beam": 61,
+          "stairs": 140,
+          "parallel_box": 94,
+          "balance_beam": 54,
+          "stepping_stones": 44,
+          "jump_box": 85,
+          "maze": 33,
+          "contour": 123,
+          "islands": 45,
+          "climb_box": 135,
+          "inverted_slope": 159
+        }
+      },
+      "tabular_sgs_eps1e4": {
+        "train_hours": 3.4296,
+        "holdout_successes": {
+          "1000": 834,
+          "2000": 1094,
+          "3000": 1262,
+          "4000": 1313,
+          "5000": 1351
+        },
+        "holdout_clean_successes": {
+          "1000": 830,
+          "2000": 1084,
+          "3000": 1246,
+          "4000": 1284,
+          "5000": 1333
+        },
+        "u5000_rate_pct": 64.95,
+        "u5000_clean_rate_pct": 64.09,
+        "u5000_per_terrain": {
+          "gap": 147,
+          "pit": 137,
+          "radial_beam": 113,
+          "stairs": 158,
+          "parallel_box": 74,
+          "balance_beam": 109,
+          "stepping_stones": 22,
+          "jump_box": 55,
+          "maze": 52,
+          "contour": 134,
+          "islands": 49,
+          "climb_box": 141,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_sharp": {
+        "train_hours": 3.4504,
+        "holdout_successes": {
+          "1000": 774,
+          "2000": 984,
+          "3000": 1071,
+          "4000": 1161,
+          "5000": 1232
+        },
+        "holdout_clean_successes": {
+          "1000": 673,
+          "2000": 890,
+          "3000": 995,
+          "4000": 1137,
+          "5000": 1204
+        },
+        "u5000_rate_pct": 59.23,
+        "u5000_clean_rate_pct": 57.88,
+        "u5000_per_terrain": {
+          "gap": 152,
+          "pit": 143,
+          "radial_beam": 39,
+          "stairs": 158,
+          "parallel_box": 80,
+          "balance_beam": 40,
+          "stepping_stones": 19,
+          "jump_box": 38,
+          "maze": 86,
+          "contour": 144,
+          "islands": 27,
+          "climb_box": 147,
+          "inverted_slope": 159
+        }
+      },
+      "grid_sgs": {
+        "train_hours": 3.467,
+        "holdout_successes": {
+          "1000": 894,
+          "2000": 1076,
+          "3000": 1164,
+          "4000": 1270,
+          "5000": 1323
+        },
+        "holdout_clean_successes": {
+          "1000": 865,
+          "2000": 1047,
+          "3000": 1137,
+          "4000": 1242,
+          "5000": 1287
+        },
+        "u5000_rate_pct": 63.61,
+        "u5000_clean_rate_pct": 61.88,
+        "u5000_per_terrain": {
+          "gap": 152,
+          "pit": 141,
+          "radial_beam": 66,
+          "stairs": 155,
+          "parallel_box": 95,
+          "balance_beam": 72,
+          "stepping_stones": 32,
+          "jump_box": 56,
+          "maze": 72,
+          "contour": 139,
+          "islands": 37,
+          "climb_box": 146,
+          "inverted_slope": 160
+        }
+      },
+      "knn_sgs": {
+        "train_hours": 3.4485,
+        "holdout_successes": {
+          "1000": 937,
+          "2000": 1107,
+          "3000": 1177,
+          "4000": 1245,
+          "5000": 1282
+        },
+        "holdout_clean_successes": {
+          "1000": 928,
+          "2000": 1095,
+          "3000": 1165,
+          "4000": 1220,
+          "5000": 1255
+        },
+        "u5000_rate_pct": 61.63,
+        "u5000_clean_rate_pct": 60.34,
+        "u5000_per_terrain": {
+          "gap": 149,
+          "pit": 150,
+          "radial_beam": 69,
+          "stairs": 154,
+          "parallel_box": 76,
+          "balance_beam": 59,
+          "stepping_stones": 28,
+          "jump_box": 52,
+          "maze": 63,
+          "contour": 139,
+          "islands": 42,
+          "climb_box": 141,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs": {
+        "train_hours": 3.3312,
+        "holdout_successes": {
+          "1000": 1012,
+          "2000": 1309,
+          "3000": 1435,
+          "4000": 1479,
+          "5000": 1535
+        },
+        "holdout_clean_successes": {
+          "1000": 994,
+          "2000": 1273,
+          "3000": 1377,
+          "4000": 1378,
+          "5000": 1412
+        },
+        "u5000_rate_pct": 73.8,
+        "u5000_clean_rate_pct": 67.88,
+        "u5000_per_terrain": {
+          "gap": 159,
+          "pit": 146,
+          "radial_beam": 134,
+          "stairs": 155,
+          "parallel_box": 113,
+          "balance_beam": 135,
+          "stepping_stones": 45,
+          "jump_box": 85,
+          "maze": 59,
+          "contour": 140,
+          "islands": 60,
+          "climb_box": 144,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs_v2": {
+        "train_hours": 3.4082,
+        "holdout_successes": {
+          "1000": 977,
+          "2000": 1312,
+          "3000": 1400,
+          "4000": 1457,
+          "5000": 1508
+        },
+        "holdout_clean_successes": {
+          "1000": 945,
+          "2000": 1270,
+          "3000": 1332,
+          "4000": 1341,
+          "5000": 1365
+        },
+        "u5000_rate_pct": 72.5,
+        "u5000_clean_rate_pct": 65.62,
+        "u5000_per_terrain": {
+          "gap": 155,
+          "pit": 142,
+          "radial_beam": 139,
+          "stairs": 151,
+          "parallel_box": 108,
+          "balance_beam": 133,
+          "stepping_stones": 42,
+          "jump_box": 85,
+          "maze": 49,
+          "contour": 139,
+          "islands": 59,
+          "climb_box": 146,
+          "inverted_slope": 160
+        }
+      }
+    },
+    "s73205": {
+      "uniform": {
+        "train_hours": 3.382,
+        "holdout_successes": {
+          "1000": 783,
+          "2000": 978,
+          "3000": 1089,
+          "4000": 1154,
+          "5000": 1213
+        },
+        "holdout_clean_successes": {
+          "1000": 769,
+          "2000": 972,
+          "3000": 1080,
+          "4000": 1141,
+          "5000": 1191
+        },
+        "u5000_rate_pct": 58.32,
+        "u5000_clean_rate_pct": 57.26,
+        "u5000_per_terrain": {
+          "gap": 152,
+          "pit": 129,
+          "radial_beam": 54,
+          "stairs": 158,
+          "parallel_box": 90,
+          "balance_beam": 44,
+          "stepping_stones": 30,
+          "jump_box": 50,
+          "maze": 43,
+          "contour": 133,
+          "islands": 36,
+          "climb_box": 134,
+          "inverted_slope": 160
+        }
+      },
+      "plr": {
+        "train_hours": 3.3386,
+        "holdout_successes": {
+          "1000": 804,
+          "2000": 998,
+          "3000": 1106,
+          "4000": 1127,
+          "5000": 1221
+        },
+        "holdout_clean_successes": {
+          "1000": 790,
+          "2000": 979,
+          "3000": 1082,
+          "4000": 1111,
+          "5000": 1197
+        },
+        "u5000_rate_pct": 58.7,
+        "u5000_clean_rate_pct": 57.55,
+        "u5000_per_terrain": {
+          "gap": 136,
+          "pit": 132,
+          "radial_beam": 49,
+          "stairs": 156,
+          "parallel_box": 91,
+          "balance_beam": 47,
+          "stepping_stones": 39,
+          "jump_box": 65,
+          "maze": 35,
+          "contour": 135,
+          "islands": 33,
+          "climb_box": 143,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_eps1e4": {
+        "train_hours": 3.386,
+        "holdout_successes": {
+          "1000": 756,
+          "2000": 1085,
+          "3000": 1230,
+          "4000": 1319,
+          "5000": 1399
+        },
+        "holdout_clean_successes": {
+          "1000": 735,
+          "2000": 1075,
+          "3000": 1211,
+          "4000": 1302,
+          "5000": 1356
+        },
+        "u5000_rate_pct": 67.26,
+        "u5000_clean_rate_pct": 65.19,
+        "u5000_per_terrain": {
+          "gap": 160,
+          "pit": 140,
+          "radial_beam": 129,
+          "stairs": 156,
+          "parallel_box": 85,
+          "balance_beam": 122,
+          "stepping_stones": 27,
+          "jump_box": 57,
+          "maze": 40,
+          "contour": 134,
+          "islands": 44,
+          "climb_box": 145,
+          "inverted_slope": 160
+        }
+      },
+      "tabular_sgs_sharp": {
+        "train_hours": 3.4416,
+        "holdout_successes": {
+          "1000": 824,
+          "2000": 1006,
+          "3000": 1128,
+          "4000": 1246,
+          "5000": 1290
+        },
+        "holdout_clean_successes": {
+          "1000": 818,
+          "2000": 998,
+          "3000": 1116,
+          "4000": 1229,
+          "5000": 1267
+        },
+        "u5000_rate_pct": 62.02,
+        "u5000_clean_rate_pct": 60.91,
+        "u5000_per_terrain": {
+          "gap": 153,
+          "pit": 141,
+          "radial_beam": 57,
+          "stairs": 159,
+          "parallel_box": 95,
+          "balance_beam": 51,
+          "stepping_stones": 18,
+          "jump_box": 39,
+          "maze": 93,
+          "contour": 145,
+          "islands": 29,
+          "climb_box": 150,
+          "inverted_slope": 160
+        }
+      },
+      "grid_sgs": {
+        "train_hours": 3.4807,
+        "holdout_successes": {
+          "1000": 873,
+          "2000": 1052,
+          "3000": 1161,
+          "4000": 1221,
+          "5000": 1278
+        },
+        "holdout_clean_successes": {
+          "1000": 854,
+          "2000": 1030,
+          "3000": 1140,
+          "4000": 1190,
+          "5000": 1250
+        },
+        "u5000_rate_pct": 61.44,
+        "u5000_clean_rate_pct": 60.1,
+        "u5000_per_terrain": {
+          "gap": 153,
+          "pit": 149,
+          "radial_beam": 62,
+          "stairs": 157,
+          "parallel_box": 84,
+          "balance_beam": 56,
+          "stepping_stones": 27,
+          "jump_box": 65,
+          "maze": 52,
+          "contour": 140,
+          "islands": 32,
+          "climb_box": 141,
+          "inverted_slope": 160
+        }
+      },
+      "knn_sgs": {
+        "train_hours": 3.491,
+        "holdout_successes": {
+          "1000": 876,
+          "2000": 1009,
+          "3000": 1027,
+          "4000": 1084,
+          "5000": 1098
+        },
+        "holdout_clean_successes": {
+          "1000": 860,
+          "2000": 989,
+          "3000": 1003,
+          "4000": 1067,
+          "5000": 1084
+        },
+        "u5000_rate_pct": 52.79,
+        "u5000_clean_rate_pct": 52.12,
+        "u5000_per_terrain": {
+          "gap": 151,
+          "pit": 141,
+          "radial_beam": 6,
+          "stairs": 154,
+          "parallel_box": 76,
+          "balance_beam": 3,
+          "stepping_stones": 21,
+          "jump_box": 43,
+          "maze": 70,
+          "contour": 137,
+          "islands": 1,
+          "climb_box": 135,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs": {
+        "train_hours": 3.203,
+        "holdout_successes": {
+          "1000": 1105,
+          "2000": 1444,
+          "3000": 1540,
+          "4000": 1558,
+          "5000": 1607
+        },
+        "holdout_clean_successes": {
+          "1000": 1066,
+          "2000": 1421,
+          "3000": 1523,
+          "4000": 1532,
+          "5000": 1590
+        },
+        "u5000_rate_pct": 77.26,
+        "u5000_clean_rate_pct": 76.44,
+        "u5000_per_terrain": {
+          "gap": 157,
+          "pit": 139,
+          "radial_beam": 152,
+          "stairs": 155,
+          "parallel_box": 121,
+          "balance_beam": 153,
+          "stepping_stones": 51,
+          "jump_box": 102,
+          "maze": 30,
+          "contour": 136,
+          "islands": 101,
+          "climb_box": 150,
+          "inverted_slope": 160
+        }
+      },
+      "nsgs_v2": {
+        "train_hours": 3.4589,
+        "holdout_successes": {
+          "1000": 983,
+          "2000": 1290,
+          "3000": 1390,
+          "4000": 1472,
+          "5000": 1497
+        },
+        "holdout_clean_successes": {
+          "1000": 956,
+          "2000": 1185,
+          "3000": 1059,
+          "4000": 961,
+          "5000": 859
+        },
+        "u5000_rate_pct": 71.97,
+        "u5000_clean_rate_pct": 41.3,
+        "u5000_per_terrain": {
+          "gap": 155,
+          "pit": 141,
+          "radial_beam": 129,
+          "stairs": 154,
+          "parallel_box": 105,
+          "balance_beam": 128,
+          "stepping_stones": 42,
+          "jump_box": 78,
+          "maze": 51,
+          "contour": 133,
+          "islands": 80,
+          "climb_box": 141,
+          "inverted_slope": 160
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "uniform": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1198.25,
+      "u5000_total_std": 69.95,
+      "u5000_rate_mean_pct": 57.61,
+      "u5000_rate_std_pct": 3.36,
+      "u5000_clean_rate_mean_pct": 56.47,
+      "u5000_clean_rate_std_pct": 3.12,
+      "train_hours_mean": 3.377,
+      "train_hours_std": 0.004,
+      "curve_rate_mean_pct": {
+        "1000": 35.97,
+        "2000": 46.15,
+        "3000": 51.39,
+        "4000": 54.65,
+        "5000": 57.61
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 139.25,
+        "pit": 131.5,
+        "radial_beam": 66.5,
+        "stairs": 155.0,
+        "parallel_box": 78.5,
+        "balance_beam": 61.75,
+        "stepping_stones": 22.0,
+        "jump_box": 45.0,
+        "maze": 41.25,
+        "contour": 134.5,
+        "islands": 28.5,
+        "climb_box": 134.5,
+        "inverted_slope": 160.0
+      }
+    },
+    "plr": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1191.5,
+      "u5000_total_std": 83.61,
+      "u5000_rate_mean_pct": 57.28,
+      "u5000_rate_std_pct": 4.02,
+      "u5000_clean_rate_mean_pct": 55.83,
+      "u5000_clean_rate_std_pct": 3.89,
+      "train_hours_mean": 3.374,
+      "train_hours_std": 0.024,
+      "curve_rate_mean_pct": {
+        "1000": 37.38,
+        "2000": 47.19,
+        "3000": 51.0,
+        "4000": 54.36,
+        "5000": 57.28
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 140.75,
+        "pit": 122.25,
+        "radial_beam": 56.75,
+        "stairs": 144.0,
+        "parallel_box": 84.25,
+        "balance_beam": 50.75,
+        "stepping_stones": 37.75,
+        "jump_box": 69.5,
+        "maze": 31.25,
+        "contour": 127.5,
+        "islands": 33.75,
+        "climb_box": 133.25,
+        "inverted_slope": 159.75
+      }
+    },
+    "tabular_sgs_eps1e4": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1305.5,
+      "u5000_total_std": 129.11,
+      "u5000_rate_mean_pct": 62.76,
+      "u5000_rate_std_pct": 6.21,
+      "u5000_clean_rate_mean_pct": 59.98,
+      "u5000_clean_rate_std_pct": 5.62,
+      "train_hours_mean": 3.415,
+      "train_hours_std": 0.018,
+      "curve_rate_mean_pct": {
+        "1000": 38.44,
+        "2000": 51.36,
+        "3000": 57.52,
+        "4000": 60.55,
+        "5000": 62.76
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 148.25,
+        "pit": 139.75,
+        "radial_beam": 92.5,
+        "stairs": 155.25,
+        "parallel_box": 79.5,
+        "balance_beam": 91.25,
+        "stepping_stones": 23.25,
+        "jump_box": 50.75,
+        "maze": 55.0,
+        "contour": 132.25,
+        "islands": 37.25,
+        "climb_box": 140.5,
+        "inverted_slope": 160.0
+      }
+    },
+    "tabular_sgs_sharp": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1316.75,
+      "u5000_total_std": 59.78,
+      "u5000_rate_mean_pct": 63.31,
+      "u5000_rate_std_pct": 2.87,
+      "u5000_clean_rate_mean_pct": 62.01,
+      "u5000_clean_rate_std_pct": 2.82,
+      "train_hours_mean": 3.437,
+      "train_hours_std": 0.016,
+      "curve_rate_mean_pct": {
+        "1000": 38.86,
+        "2000": 49.87,
+        "3000": 55.81,
+        "4000": 60.3,
+        "5000": 63.31
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 155.75,
+        "pit": 141.75,
+        "radial_beam": 67.75,
+        "stairs": 158.5,
+        "parallel_box": 89.25,
+        "balance_beam": 60.25,
+        "stepping_stones": 22.0,
+        "jump_box": 43.25,
+        "maze": 85.5,
+        "contour": 146.5,
+        "islands": 38.25,
+        "climb_box": 148.25,
+        "inverted_slope": 159.75
+      }
+    },
+    "grid_sgs": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1213.75,
+      "u5000_total_std": 90.55,
+      "u5000_rate_mean_pct": 58.35,
+      "u5000_rate_std_pct": 4.35,
+      "u5000_clean_rate_mean_pct": 56.92,
+      "u5000_clean_rate_std_pct": 4.21,
+      "train_hours_mean": 3.475,
+      "train_hours_std": 0.005,
+      "curve_rate_mean_pct": {
+        "1000": 40.81,
+        "2000": 49.19,
+        "3000": 53.34,
+        "4000": 56.0,
+        "5000": 58.35
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 144.75,
+        "pit": 145.25,
+        "radial_beam": 39.0,
+        "stairs": 153.25,
+        "parallel_box": 84.25,
+        "balance_beam": 39.75,
+        "stepping_stones": 26.0,
+        "jump_box": 52.5,
+        "maze": 64.0,
+        "contour": 139.75,
+        "islands": 22.75,
+        "climb_box": 142.5,
+        "inverted_slope": 160.0
+      }
+    },
+    "knn_sgs": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1212.25,
+      "u5000_total_std": 75.32,
+      "u5000_rate_mean_pct": 58.28,
+      "u5000_rate_std_pct": 3.62,
+      "u5000_clean_rate_mean_pct": 56.85,
+      "u5000_clean_rate_std_pct": 3.25,
+      "train_hours_mean": 3.472,
+      "train_hours_std": 0.016,
+      "curve_rate_mean_pct": {
+        "1000": 42.34,
+        "2000": 49.38,
+        "3000": 52.68,
+        "4000": 56.03,
+        "5000": 58.28
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 139.25,
+        "pit": 142.25,
+        "radial_beam": 54.75,
+        "stairs": 156.25,
+        "parallel_box": 76.5,
+        "balance_beam": 48.5,
+        "stepping_stones": 24.25,
+        "jump_box": 47.75,
+        "maze": 60.75,
+        "contour": 136.0,
+        "islands": 26.5,
+        "climb_box": 139.5,
+        "inverted_slope": 160.0
+      }
+    },
+    "nsgs": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1564.25,
+      "u5000_total_std": 34.49,
+      "u5000_rate_mean_pct": 75.2,
+      "u5000_rate_std_pct": 1.66,
+      "u5000_clean_rate_mean_pct": 72.42,
+      "u5000_clean_rate_std_pct": 3.19,
+      "train_hours_mean": 3.26,
+      "train_hours_std": 0.053,
+      "curve_rate_mean_pct": {
+        "1000": 48.82,
+        "2000": 65.18,
+        "3000": 70.3,
+        "4000": 72.96,
+        "5000": 75.2
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 157.25,
+        "pit": 143.5,
+        "radial_beam": 143.75,
+        "stairs": 155.25,
+        "parallel_box": 113.0,
+        "balance_beam": 144.0,
+        "stepping_stones": 44.5,
+        "jump_box": 89.75,
+        "maze": 51.5,
+        "contour": 140.25,
+        "islands": 75.0,
+        "climb_box": 146.5,
+        "inverted_slope": 160.0
+      }
+    },
+    "nsgs_v2": {
+      "n_seeds": 4,
+      "u5000_total_mean": 1530.5,
+      "u5000_total_std": 33.92,
+      "u5000_rate_mean_pct": 73.58,
+      "u5000_rate_std_pct": 1.63,
+      "u5000_clean_rate_mean_pct": 63.59,
+      "u5000_clean_rate_std_pct": 13.31,
+      "train_hours_mean": 3.447,
+      "train_hours_std": 0.026,
+      "curve_rate_mean_pct": {
+        "1000": 48.44,
+        "2000": 63.75,
+        "3000": 68.58,
+        "4000": 71.24,
+        "5000": 73.58
+      },
+      "per_terrain_mean_of_160": {
+        "gap": 153.5,
+        "pit": 143.25,
+        "radial_beam": 140.5,
+        "stairs": 155.25,
+        "parallel_box": 106.25,
+        "balance_beam": 136.5,
+        "stepping_stones": 42.25,
+        "jump_box": 83.0,
+        "maze": 52.25,
+        "contour": 138.75,
+        "islands": 74.5,
+        "climb_box": 144.5,
+        "inverted_slope": 160.0
+      }
+    }
+  }
+}

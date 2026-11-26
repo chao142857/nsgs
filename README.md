@@ -8,8 +8,14 @@ A Go2 quadruped with a Piper arm learns to reach a target with its end effector 
 
 ## Experiment source code
 
-- [SGS navigation on 13 procedural terrains with ANYmal-D](experiments/sgs_anymal_d/)
+- [Unified 8-method curriculum sampler library (`nsgs.baselines`)](docs/baselines.md)
+- [ANYmal-D 13-terrain 3D Trimesh 8-method x 4-seed benchmark](experiments/sgs_13terrain_trimesh/)
+- [SGS navigation on 13 procedural terrains with ANYmal-D (initial snapshot)](experiments/sgs_anymal_d/)
 - [Go2 and Piper end-effector goal reaching, original 3D and fixed 5D](experiments/go2_piper_goalreach/)
+
+## ANYmal-D 13-terrain 3D Trimesh benchmark (4 paired seeds)
+
+On a 260-tile 3D Trimesh parkour benchmark (13 procedural terrains, **104,000** training routes, **2,080** disjoint full-cross holdout routes, 5,000 PPO updates, 4 paired seeds with identical `u0` weights per seed), **`nSGS` (v1)** achieved **`75.20% ± 1.66%`** holdout success (`1,564.2 / 2,080`) with the fastest wall-clock training time (**`3.26 h`**), followed by **`nSGS-v2`** at **`73.58% ± 1.63%`** (`1,530.5 / 2,080`). Both neural samplers beat all six non-neural baselines on **4 / 4 seeds** (`tabular_sgs_sharp`: `63.31%`, `tabular_sgs_eps1e4`: `62.76%`, `grid_sgs`: `58.35%`, `knn_sgs`: `58.28%`, `uniform`: `57.61%`, `plr`: `57.28%`). See [experiments/sgs_13terrain_trimesh](experiments/sgs_13terrain_trimesh/) and [four_seed_u5000_summary.json](results/sgs_13terrain_trimesh/four_seed_u5000_summary.json).
 
 ## Goal reaching on a million-task pool
 
