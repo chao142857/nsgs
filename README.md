@@ -6,8 +6,6 @@ English · [简体中文](README.zh-CN.md)
 
 `nSGS` is a neural success-rate estimator for large-scale reinforcement learning curricula (100k to 1M+ continuous tasks). Each naturally completed rollout supplies a binary success or failure label; a lightweight MLP ensemble generalizes those outcomes across unseen task descriptors to predict each task's success probability under the current policy, and feeds the predictions into a Success-Guided Sampling (SGS) frontier kernel. This replaces per-task tabular counters that stall under sparse visitation and spatial grids that degrade in high-dimensional or heterogeneous task spaces.
 
-![ANYmal-D 13-Terrain Connected Showcase](assets/figures/anymal_13terrain_showcase.gif)
-
 ![nSGS Architecture](assets/figures/nsgs_architecture.png)
 
 ## ANYmal-D 13-Terrain 3D Trimesh Benchmark (4 Paired Seeds)

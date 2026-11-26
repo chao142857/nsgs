@@ -6,8 +6,6 @@
 
 `nSGS`（Neural Success-Guided Sampling）是一种面向大规模强化学习任务池（10 万至 100 万以上连续任务）的神经成功率估计与课程采样框架。每个自然结束的训练回合提供一个二值成功/失败标签；轻量级多层感知机集成网络在连续任务特征上跨任务泛化预测当前策略的成功率，并输入成功引导采样（SGS）前沿核以聚焦学习前沿。这一机制克服了逐任务查表在大任务池中访问稀疏导致的停滞，以及空间网格分桶在高维/异构任务空间中的维数灾难。
 
-![ANYmal-D 十三地形跨障演示](assets/figures/anymal_13terrain_showcase.gif)
-
 ![nSGS 方法架构图](assets/figures/nsgs_architecture.png)
 
 ## ANYmal-D 十三地形 3D Trimesh 四种子正式基准
