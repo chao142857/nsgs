@@ -47,3 +47,4 @@ build/
 dist/
 
 !assets/figures/*.png
+!assets/figures/*.gif

@@ -1133,13 +1133,13 @@
     "uniform": {
       "n_seeds": 4,
       "u5000_total_mean": 1198.25,
-      "u5000_total_std": 69.95,
+      "u5000_total_std": 80.77,
       "u5000_rate_mean_pct": 57.61,
-      "u5000_rate_std_pct": 3.36,
+      "u5000_rate_std_pct": 3.88,
       "u5000_clean_rate_mean_pct": 56.47,
-      "u5000_clean_rate_std_pct": 3.12,
+      "u5000_clean_rate_std_pct": 3.6,
       "train_hours_mean": 3.377,
-      "train_hours_std": 0.004,
+      "train_hours_std": 0.005,
       "curve_rate_mean_pct": {
         "1000": 35.97,
         "2000": 46.15,
@@ -1166,13 +1166,13 @@
     "plr": {
       "n_seeds": 4,
       "u5000_total_mean": 1191.5,
-      "u5000_total_std": 83.61,
+      "u5000_total_std": 96.54,
       "u5000_rate_mean_pct": 57.28,
-      "u5000_rate_std_pct": 4.02,
+      "u5000_rate_std_pct": 4.64,
       "u5000_clean_rate_mean_pct": 55.83,
-      "u5000_clean_rate_std_pct": 3.89,
+      "u5000_clean_rate_std_pct": 4.49,
       "train_hours_mean": 3.374,
-      "train_hours_std": 0.024,
+      "train_hours_std": 0.028,
       "curve_rate_mean_pct": {
         "1000": 37.38,
         "2000": 47.19,
@@ -1199,13 +1199,13 @@
     "tabular_sgs_eps1e4": {
       "n_seeds": 4,
       "u5000_total_mean": 1305.5,
-      "u5000_total_std": 129.11,
+      "u5000_total_std": 149.09,
       "u5000_rate_mean_pct": 62.76,
-      "u5000_rate_std_pct": 6.21,
+      "u5000_rate_std_pct": 7.17,
       "u5000_clean_rate_mean_pct": 59.98,
-      "u5000_clean_rate_std_pct": 5.62,
+      "u5000_clean_rate_std_pct": 6.49,
       "train_hours_mean": 3.415,
-      "train_hours_std": 0.018,
+      "train_hours_std": 0.021,
       "curve_rate_mean_pct": {
         "1000": 38.44,
         "2000": 51.36,
@@ -1232,13 +1232,13 @@
     "tabular_sgs_sharp": {
       "n_seeds": 4,
       "u5000_total_mean": 1316.75,
-      "u5000_total_std": 59.78,
+      "u5000_total_std": 69.03,
       "u5000_rate_mean_pct": 63.31,
-      "u5000_rate_std_pct": 2.87,
+      "u5000_rate_std_pct": 3.32,
       "u5000_clean_rate_mean_pct": 62.01,
-      "u5000_clean_rate_std_pct": 2.82,
+      "u5000_clean_rate_std_pct": 3.26,
       "train_hours_mean": 3.437,
-      "train_hours_std": 0.016,
+      "train_hours_std": 0.019,
       "curve_rate_mean_pct": {
         "1000": 38.86,
         "2000": 49.87,
@@ -1265,13 +1265,13 @@
     "grid_sgs": {
       "n_seeds": 4,
       "u5000_total_mean": 1213.75,
-      "u5000_total_std": 90.55,
+      "u5000_total_std": 104.56,
       "u5000_rate_mean_pct": 58.35,
-      "u5000_rate_std_pct": 4.35,
+      "u5000_rate_std_pct": 5.03,
       "u5000_clean_rate_mean_pct": 56.92,
-      "u5000_clean_rate_std_pct": 4.21,
+      "u5000_clean_rate_std_pct": 4.86,
       "train_hours_mean": 3.475,
-      "train_hours_std": 0.005,
+      "train_hours_std": 0.006,
       "curve_rate_mean_pct": {
         "1000": 40.81,
         "2000": 49.19,
@@ -1298,13 +1298,13 @@
     "knn_sgs": {
       "n_seeds": 4,
       "u5000_total_mean": 1212.25,
-      "u5000_total_std": 75.32,
+      "u5000_total_std": 86.97,
       "u5000_rate_mean_pct": 58.28,
-      "u5000_rate_std_pct": 3.62,
+      "u5000_rate_std_pct": 4.18,
       "u5000_clean_rate_mean_pct": 56.85,
-      "u5000_clean_rate_std_pct": 3.25,
+      "u5000_clean_rate_std_pct": 3.75,
       "train_hours_mean": 3.472,
-      "train_hours_std": 0.016,
+      "train_hours_std": 0.018,
       "curve_rate_mean_pct": {
         "1000": 42.34,
         "2000": 49.38,
@@ -1331,13 +1331,13 @@
     "nsgs": {
       "n_seeds": 4,
       "u5000_total_mean": 1564.25,
-      "u5000_total_std": 34.49,
+      "u5000_total_std": 39.83,
       "u5000_rate_mean_pct": 75.2,
-      "u5000_rate_std_pct": 1.66,
+      "u5000_rate_std_pct": 1.91,
       "u5000_clean_rate_mean_pct": 72.42,
-      "u5000_clean_rate_std_pct": 3.19,
+      "u5000_clean_rate_std_pct": 3.68,
       "train_hours_mean": 3.26,
-      "train_hours_std": 0.053,
+      "train_hours_std": 0.061,
       "curve_rate_mean_pct": {
         "1000": 48.82,
         "2000": 65.18,
@@ -1364,13 +1364,13 @@
     "nsgs_v2": {
       "n_seeds": 4,
       "u5000_total_mean": 1530.5,
-      "u5000_total_std": 33.92,
+      "u5000_total_std": 39.16,
       "u5000_rate_mean_pct": 73.58,
-      "u5000_rate_std_pct": 1.63,
+      "u5000_rate_std_pct": 1.88,
       "u5000_clean_rate_mean_pct": 63.59,
-      "u5000_clean_rate_std_pct": 13.31,
+      "u5000_clean_rate_std_pct": 15.37,
       "train_hours_mean": 3.447,
-      "train_hours_std": 0.026,
+      "train_hours_std": 0.03,
       "curve_rate_mean_pct": {
         "1000": 48.44,
         "2000": 63.75,
@@ -1394,5 +1394,7 @@
         "inverted_slope": 160.0
       }
     }
-  }
+  },
+  "std_convention": "unbiased sample standard deviation (ddof=1, n=4 seeds)",
+  "wall_time_note": "Each method ran on a fixed GPU index (GPU 0..7) on a shared 8-GPU node; wall-clock hours are reported for reference rather than controlled compute-efficiency benchmarks."
 }

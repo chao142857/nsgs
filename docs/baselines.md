@@ -16,7 +16,7 @@ medium-, and high-dimensional robot control pools (3D, 5D, 10D+, and heterogeneo
 | `plr` | `PLRSampler` | Tabular Prioritized Level Replay (Jiang et al., ICML 2021): $(1-\rho)P_S + \rho P_C$ + unseen gate | Standard UED baseline; per-ID storage cannot generalize to unseen tasks in 1M pools |
 | `neural_plr` | `NeuralPLRSampler` | 5-MLP ensemble predicting PLR score + staleness | Ablation decoupling neural generalization from SGS frontier vs. PLR value-loss |
 | `nsgs` | `NSGSSampler` (v1) | 5-MLP ensemble mean, `history=1M`, `tau=100`, `sharp` kernel | v1-compatible configuration matching the 3D/5D architecture and hyperparameters (uses isolated per-sampler NumPy batch RNG and clamps batch size to buffer size in early updates) |
-| `nsgs_v2` | `NSGSSampler` (v2) | 5-MLP ensemble + **one-sided epistemic optimism** ($\mu + \beta\sigma$ when $\mu < t$), `history=200K`, `tau=30`, `sharp_safe` kernel | Fixes pessimistic frontier lock-out and non-stationary tracking lag without spatial grids |
+| `nsgs_v2` | `NSGSSampler` (v2) | 5-MLP ensemble + **one-sided epistemic optimism** ($\mu + \beta\sigma$ when $\mu < t$), library default `history=200K`, `tau=30`, `sharp_safe` kernel | Fixes pessimistic frontier lock-out and non-stationary tracking lag without spatial grids. Note: the 13-terrain 104k-pool benchmark overrides these defaults in [trimesh_train.py](../experiments/sgs_13terrain_trimesh/src/trimesh_train.py) with `history_limit=1_000_000`, `tau=120`, `beta_optimism=0.30`, `epsilon=1e-5`, and `adaptive_target=True`. |
 
 ## Core Usage
 
